@@ -1,20 +1,20 @@
 import icons from './icons'
-const {MdOutlineLibraryMusic} = icons
+const {MdOutlineLibraryMusic, FiDisc, LiaChartLineSolid} = icons
 
 export const SidebarMenu = [
     {
         path: 'mymusic',
-        text: 'Cá nhân nef',
+        text: 'Cá nhân',
         icon: <MdOutlineLibraryMusic size={24}/>
     },
     {
         path: '',
         text: 'Khám phá',
-        icon: <MdOutlineLibraryMusic size={24}/>
+        icon: <FiDisc size={24}/>
     },
     {
         path: 'zing-chart',
         text: '#zingchart',
-        icon: <MdOutlineLibraryMusic size={24}/>
+        icon: <LiaChartLineSolid size={24}/>
     },
 ]

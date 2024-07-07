@@ -16,8 +16,9 @@ function SidebarLeft() {
             <div className='flex flex-col'>
                 {SidebarMenu.map(item => (
                     <NavLink
+                        key={item.path}
                         to={item.path}
-                        className={({isActive}) => isActive ? activeStyle : notActiveStyle}
+                        className={({ isActive }) => isActive ? activeStyle : notActiveStyle}
                     >
                         {item.icon} <span>{item.text}</span>
                     </NavLink>
