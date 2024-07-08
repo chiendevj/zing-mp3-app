@@ -1,18 +1,21 @@
-import actionTypes from "../action/actionTypes";
+// reducers/appReducer.js
+import actionTypes from '../actions/actionTypes';
 
-const initStare = {
-    homeData: [],
-    test: 'Hello 123',
-    d: 'dsfbg'
-}
-const appReducer = (state = initStare, action) => {
+const initState = {
+    banner: []
+};
+
+const appReducer = (state = initState, action) => {
     switch (action.type) {
         case actionTypes.GET_HOME:
-            return state
-    
-        default:
-            return state
-    }
-}
+            return {
+                ...state,
+                banner: action.homeData?.find(item => item.sectionType === 'banner')?.items || []
+            };
 
-export default appReducer
+        default:
+            return state;
+    }
+};
+
+export default appReducer;

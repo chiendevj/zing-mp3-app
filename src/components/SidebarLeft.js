@@ -3,8 +3,8 @@ import logo from '../assets/logo.svg';
 import { SidebarMenu } from '../untils/menu';
 import { NavLink } from 'react-router-dom';
 
-const notActiveStyle = 'py-2 px-[25px] flex gap-2 items-center font-bold text-[13px] text-[#32323d]'
-const activeStyle = 'py-2 px-[25px] flex gap-2 items-center font-bold text-[13px] text-[#0f7070]'
+const notActiveStyle = 'py-3 px-[25px] flex gap-2 items-center font-semibold text-sm text-[#32323d]'
+const activeStyle = 'py-3 px-[25px] flex gap-2 items-center font-semibold text-sm text-[#0f7070]'
 
 
 function SidebarLeft() {
