@@ -1,22 +1,14 @@
-import React, {useEffect} from 'react'
-import Header from '../../components/Header'
-import * as apis from '../../apis'
+import React from 'react'
+import { Slider, Header } from '../../components'
 
 function Home() {
 
-  useEffect(() => {
-    const fetchHomeData = async () => {
-      const response = await apis.getHome()
-      console.log(response);
-    }
-
-    fetchHomeData()
-  }, [])
   return (
     <div className='overflow-y-auto'>
-      <div className='h-[70px] px-[60px] flex items-center '>
+      <div className='h-[70px] px-14 flex items-center '>
       <Header/>
       </div>
+      <Slider/>
     </div>
   )
 }

@@ -2,3 +2,7 @@
     --normal-text: #0f7070;
     --layout-bg: #ced9d9;
   }
+
+  * {
+    font-family:Inter,sans-serif;
+  }
