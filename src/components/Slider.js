@@ -27,7 +27,7 @@ function Slider() {
 
     const handleClickBanner = (item) => {
         if (item?.type === 4) {
-            dispatch(actions.setCurSongId('Z78EU9W8'))
+            dispatch(actions.setCurSongId('Z78BZ0DU'))
         }
         
     }
