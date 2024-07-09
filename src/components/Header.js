@@ -13,7 +13,7 @@ const Header = () => {
                 <Search/> 
             </div>
         </div>
-        <button className='bg-primary p-2 rounded-full text-white opacity-70 hover:opacity-100'>{<icons.GoPerson size={24}/>}</button>
+        <button className='bg-main-500 p-2 rounded-full text-white opacity-70 hover:opacity-100'>{<icons.GoPerson size={24}/>}</button>
     </div>
   );
 };
