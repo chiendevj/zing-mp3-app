@@ -14,16 +14,13 @@ function Player() {
     const audioEl = new Audio()
     const [songInfo, setSongInfo] = useState(null)
     const [source, setSource] = useState(null)
-    // const [isPlaying, setIsPlaying] = useState(false)
-
     const { curSongId, isPlaying } = useSelector(state => state.music);
-
-    console.log(isPlaying);
+    
     useEffect(() => {
         const fetchDetail = async () => {
             const[res1, res2] = await Promise.all([
-                apis.getDetailSong(curSongId),
-                apis.getSong(curSongId)
+                apis.apiGetDetailSong(curSongId),
+                apis.apiGetSong(curSongId)
             ])
 
             if (res1.data.err === 0) {
@@ -38,7 +35,7 @@ function Player() {
     }, [curSongId])
 
     useEffect(() => {
-
+        // audioEl.play()
     },[])
 
     const handleTogglePlayMusic = () => { 
@@ -48,14 +45,14 @@ function Player() {
     return (
         <div className='flex w-full px-5 h-full items-center bg-main-400'>
             <div className='w-[30%] flex-auto flex items-center gap-2'>
-                <img src={songInfo?.thumbnail} alt={songInfo?.title} className='w-16 h-16 rounded-[4px] object-cover' />
+                <img src={songInfo?.thumbnailM} alt={songInfo?.title} className='w-16 h-16 rounded-[4px] object-cover' />
                 <div className='flex flex-col '>
                     <span className='text-sm text-[#32323d] font-medium'>{songInfo?.title}</span>
-                    <span className='text-[12px] text-[#696969] font-normal'>
+                    <div className='text-xs text-main-700 font-normal'>
                         {songInfo?.artists && songInfo.artists.map((artist, index) => (
                             <span key={index}>{artist.name}{index !== songInfo.artists.length - 1 && ', '}</span>
                         ))}
-                    </span>
+                    </div>
                 </div>
                 <div className='flex gap-5 pl-2'>
                     <span><AiOutlineHeart size={16} /></span>

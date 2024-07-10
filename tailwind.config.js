@@ -17,11 +17,13 @@ module.exports = {
         'main-300': '#ced9d9',
         'main-400': '#c0d8d8',
         'main-500': '#0e8080',
+        'main-600': '#32323d',
+        'main-700': '#696969',
       },
       keyframes: {
         'slide-right': {
           '0%': {
-            transform: 'translateX(-500px)'
+            transform: 'translateX(-250px)'
           },
           '100%': {
             transform: 'translateX(0)'
@@ -29,7 +31,7 @@ module.exports = {
         },
         'slide-left': {
           '0%': {
-            transform: 'translateX(500px)'
+            transform: 'translateX(250px)'
           },
           '100%': {
             transform: 'translateX(0)'
@@ -38,7 +40,10 @@ module.exports = {
       },
       animation: {
         'slide-right': 'slide-right 0.5s ease-in-out',
-        'slide-left': 'slide-left 0.5s ease-in-out',
+        'slide-left': 'slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) ',
+      },
+      flex: {
+        '4': '4 4 0%',
       }
     },
     screens: {
