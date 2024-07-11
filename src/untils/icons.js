@@ -1,4 +1,4 @@
-import { MdOutlineLibraryMusic, MdPlayArrow } from "react-icons/md";
+import { MdOutlineLibraryMusic, MdPlayArrow, MdPause } from "react-icons/md";
 import { FiDisc } from "react-icons/fi";
 import { GoArrowLeft, GoArrowRight, GoPerson } from "react-icons/go";
 import { LiaChartLineSolid } from "react-icons/lia";
@@ -8,7 +8,7 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import { CiShuffle, CiRepeat } from "react-icons/ci";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { PiPlaylist } from "react-icons/pi";
-import { SlVolume2 } from "react-icons/sl";
+import { SlVolume2, SlVolumeOff } from "react-icons/sl";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -27,7 +27,9 @@ const icons = {
     BiSkipNext,
     BiSkipPrevious,
     SlVolume2,
-    PiPlaylist
+    PiPlaylist,
+    SlVolumeOff,
+    MdPause,
 }
 
 export default icons

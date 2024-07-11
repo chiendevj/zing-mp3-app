@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../store/actions'
+import { useNavigate } from 'react-router-dom';
+
 function Slider() {
     const { banner } = useSelector(state => state.app);
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
 
     const [cycleIndex, setCycleIndex] = useState(0);
     const itemsToShow = 3;
-    const intervalTime = 3000; // Thời gian chuyển đổi giữa các chu kỳ (ms)
+    const intervalTime = 3000;  
 
+    // animation banner
     useEffect(() => {
         const interval = setInterval(() => {
             setCycleIndex(prevIndex => (prevIndex + 1) % itemsToShow);
         }, intervalTime);
 
-        return () => clearInterval(interval); // Dọn dẹp interval khi component bị xóa
+        return () => clearInterval(interval);  
     }, [itemsToShow]);
 
     const getVisibleItems = () => {
@@ -26,8 +31,12 @@ function Slider() {
     };
 
     const handleClickBanner = (item) => {
-        if (item?.type === 4) {
-            dispatch(actions.setCurSongId('Z78BZ0DU'))
+        if (item?.type === 1) {
+            dispatch(actions.setCurSongId(item.encodeId))
+            dispatch(actions.play(true))
+        } else if (item?.type === 4) {
+            const albumPath = item?.link.split('.')[0]
+            navigate(albumPath)
         }
         
     }
@@ -39,7 +48,7 @@ function Slider() {
                     key={item?.encodeId}
                     src={item?.banner}
                     onClick={() => handleClickBanner(item)}
-                    className='flex-1 object-contain transition-transform duration-1000 rounded-lg w-1/3'
+                    className='cursor-pointer flex-1 object-contain transition-transform duration-1000 rounded-lg w-1/3'
                     style={{
                         transform: `translateX(${index * 5}%)`
                     }}
