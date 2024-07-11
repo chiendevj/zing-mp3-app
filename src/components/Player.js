@@ -45,7 +45,7 @@ function Player() {
     return (
         <div className='flex w-full px-5 h-full items-center bg-main-400'>
             <div className='w-[30%] flex-auto flex items-center gap-2'>
-                <img src={songInfo?.thumbnailM} alt={songInfo?.title} className='w-16 h-16 rounded-[4px] object-cover' />
+                <img src={songInfo?.thumbnailM} alt={songInfo?.title} className='w-16 h-16 rounded object-cover' />
                 <div className='flex flex-col '>
                     <span className='text-sm text-[#32323d] font-medium'>{songInfo?.title}</span>
                     <div className='text-xs text-main-700 font-normal'>

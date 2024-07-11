@@ -14,11 +14,11 @@ function Public() {
           </div>
           <Outlet />
         </div>
-        <div className='w-[330px] hidden 1200:flex flex-none bg-red-300 animate-slide-left'>
+        <div className='w-[330px] hidden 1300:flex flex-none bg-red-300 animate-slide-left'>
           <SidebarRight />
         </div>
       </div>
-      <div className='flex-none h-[90px] fixed left-0 bottom-0 w-full'>
+      <div className='fixed bottom-0 left-0 right-0 h-[90px] w-full z-10'>
         <Player />
       </div>
     </div>

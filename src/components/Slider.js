@@ -48,7 +48,7 @@ function Slider() {
                     key={item?.encodeId}
                     src={item?.banner}
                     onClick={() => handleClickBanner(item)}
-                    className='flex-1 object-contain transition-transform duration-1000 rounded-lg w-1/3'
+                    className='cursor-pointer flex-1 object-contain transition-transform duration-1000 rounded-lg w-1/3'
                     style={{
                         transform: `translateX(${index * 5}%)`
                     }}
