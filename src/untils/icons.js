@@ -7,8 +7,9 @@ import {AiOutlineHeart, AiFillHeart} from "react-icons/ai"
 import { RxDotsHorizontal } from "react-icons/rx";
 import { CiShuffle, CiRepeat } from "react-icons/ci";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
-import { PiPlaylist } from "react-icons/pi";
+import { PiPlaylist, PiMusicNotes } from "react-icons/pi";
 import { SlVolume2, SlVolumeOff } from "react-icons/sl";
+import { RiUserAddLine } from "react-icons/ri";
 
 const icons = {
     MdOutlineLibraryMusic,
@@ -30,6 +31,8 @@ const icons = {
     PiPlaylist,
     SlVolumeOff,
     MdPause,
+    PiMusicNotes,
+    RiUserAddLine
 }
 
 export default icons
