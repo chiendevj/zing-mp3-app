@@ -6,7 +6,6 @@ export const apiGetHome = () => new Promise( async (resolve, reject) => {
             url: '/home',
             method: 'GET',
         })
-
         resolve(response)
     } catch (error) {
         reject(error)

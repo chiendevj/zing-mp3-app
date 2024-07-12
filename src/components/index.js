@@ -4,5 +4,12 @@ export {default as Header} from './Header'
 export {default as Search} from './Search'  
 export {default as Slider} from './Slider'  
 export {default as Player} from './Player'  
+export {default as ListSong} from './ListSong'
+export {default as SingerItem} from './SingerItem' 
+export {default as SongItem} from './SongItem'  
+
+
+
+
 
 
