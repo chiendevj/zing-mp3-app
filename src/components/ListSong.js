@@ -20,7 +20,7 @@ function ListSong({ songs }) {
           {songs &&
             songs.items.map((item, index) => (
               // Start item
-              <SongItem item = {item} />
+              <SongItem item = {item} key={index}/>
               // End item
             ))}
         </div>

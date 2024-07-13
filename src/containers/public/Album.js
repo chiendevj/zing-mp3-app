@@ -25,7 +25,7 @@ const Album = () => {
     
       <div className='w-full mt-5'>
       <div className='w-full flex 1300:flex-row flex-col gap-6'>
-        <div className='flex-none 1300:w-[30%] w-full flex-col'>
+        <div className='flex-none 1300:w-[30%] w-full flex-col pt-0 1300:pt-24'>
           <div className='flex 1300:flex-col items-center gap-5'>
             <div className='overflow-hidden rounded-lg shadow-md'>
               <img

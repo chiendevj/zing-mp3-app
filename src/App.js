@@ -36,7 +36,7 @@ function App() {
         closeOnClick
         rtl={false}
         draggable
-        theme="dark"
+        theme="light"
       />
     </>
   );
