@@ -8,7 +8,7 @@ import { RxDotsHorizontal } from "react-icons/rx";
 import { CiShuffle, CiRepeat } from "react-icons/ci";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { PiPlaylist, PiMusicNotes } from "react-icons/pi";
-import { SlVolume2, SlVolumeOff } from "react-icons/sl";
+import { SlVolume1, SlVolume2, SlVolumeOff } from "react-icons/sl";
 import { RiUserAddLine } from "react-icons/ri";
 
 const icons = {
@@ -27,6 +27,7 @@ const icons = {
     MdPlayArrow,
     BiSkipNext,
     BiSkipPrevious,
+    SlVolume1,
     SlVolume2,
     PiPlaylist,
     SlVolumeOff,
