@@ -4,19 +4,15 @@ import * as apis from '../apis'
 import * as actions from '../store/actions'
 import icons from '../untils/icons'
 
-
-const {
-    AiOutlineHeart, AiFillHeart, RxDotsHorizontal,
-    CiShuffle, CiRepeat, MdPlayArrow,
-    BiSkipNext, BiSkipPrevious, SlVolume2,
-    PiPlaylist, SlVolumeOff, MdPause
-} = icons
-
 function Player() {
     const audioEl = useRef(new Audio())
     const [songInfo, setSongInfo] = useState(null)
+    const [isPreminun, setIsPreminun] = useState(false)
     const [source, setSource] = useState(null)
-    const { curSongId, isPlaying } = useSelector(state => state.music);
+    const { curSongId, isPlaying } = useSelector(state => state.music)
+    const [prevSongId, setPrevSongId] = useState(null)
+    const [isFirst, setIsFirst] = useState(true)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -26,34 +22,47 @@ function Player() {
                 apis.apiGetSong(curSongId)
             ])
 
-            if (res1.data.err === 0) {
-                setSongInfo(res1.data.data)
-            }
-
             if (res2.data.err === 0) {
+                if (res1.data.err === 0) {
+                    setSongInfo(res1.data.data)
+                }
+
                 setSource(res2.data.data['128'])
+            } else if (res2.data.err === -1150) {
+                setIsPreminun(true)
             }
         }
-        fetchDetail()
-    }, [curSongId])
 
-    console.log(source);
+        if (curSongId !== prevSongId) {
+            fetchDetail()
+            setPrevSongId(curSongId)
+        }
+    }, [curSongId, prevSongId])
+
     useEffect(() => {
-        audioEl.current.src = source
-    }, [curSongId, source])
+        if (source) {
+            audioEl.current.src = source
+            if (isFirst) {
+                audioEl.current.pause()
+                dispatch(actions.play(false))
+            } else {
+                audioEl.current.play()
+                dispatch(actions.play(true))
+            }
+        }
+    }, [source, dispatch, isFirst])
 
     const handleTogglePlayMusic = () => {
+        setIsFirst(false)
         if (isPlaying) {
             audioEl.current.pause()
             dispatch(actions.play(false))
         } else {
-            audioEl.current.src = source
             audioEl.current.play()
             dispatch(actions.play(true))
         }
     }
 
-    console.log(source);
     return (
         <div className='flex w-full px-5 h-full items-center bg-main-400'>
             <div className='w-[30%] flex-auto flex items-center gap-2'>
@@ -67,22 +76,22 @@ function Player() {
                     </div>
                 </div>
                 <div className='flex gap-5 pl-2'>
-                    <span><AiOutlineHeart size={16} /></span>
-                    <span><RxDotsHorizontal size={16} /></span>
+                    <span className='cursor-pointer hover:text-main-500' title='Thêm vào danh sách yêu thích'><icons.AiOutlineHeart size={16} /></span>
+                    <span className='cursor-pointer hover:text-main-500' title='Lựa chọn'><icons.RxDotsHorizontal size={16} /></span>
                 </div>
             </div>
             <div className='w-2/5 flex-auto flex flex-col items-center justify-center gap-1'>
                 <div className='flex items-center '>
-                    <span title='Bật phát ngẫu nhiên' className='p-[5px] cursor-pointer mx-2 hover:text-main-500'><CiShuffle size={22} /></span>
-                    <span className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><BiSkipPrevious size={28} /></span>
+                    <span title='Bật phát ngẫu nhiên' className='p-[5px] cursor-pointer mx-2 hover:text-main-500'><icons.CiShuffle size={22} /></span>
+                    <span className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.BiSkipPrevious size={28} /></span>
                     <span
                         className='p-[5px] mx-2 hover:text-main-500 cursor-pointer border border-black rounded-full hover:border-main-500'
                         onClick={handleTogglePlayMusic}
                     >
-                        {isPlaying ? <MdPause size={28} /> : <MdPlayArrow size={28} />}
+                        {isPlaying ? <icons.MdPause size={28} /> : <icons.MdPlayArrow size={28} />}
                     </span>
-                    <span className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><BiSkipNext size={28} /></span>
-                    <span title='Bật phát lại tất cả' className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><CiRepeat size={22} /></span>
+                    <span className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.BiSkipNext size={28} /></span>
+                    <span title='Bật phát lại tất cả' className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.CiRepeat size={22} /></span>
                 </div>
                 <div>
                     progress bar
