@@ -5,7 +5,7 @@ import { LiaChartLineSolid } from "react-icons/lia";
 import { TfiSearch } from "react-icons/tfi";
 import {AiOutlineHeart, AiFillHeart} from "react-icons/ai"
 import { RxDotsHorizontal } from "react-icons/rx";
-import { CiShuffle, CiRepeat } from "react-icons/ci";
+import { CiShuffle, CiRepeat, CiAlarmOn } from "react-icons/ci";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { PiPlaylist, PiMusicNotes } from "react-icons/pi";
 import { SlVolume1, SlVolume2, SlVolumeOff } from "react-icons/sl";
@@ -33,7 +33,8 @@ const icons = {
     SlVolumeOff,
     MdPause,
     PiMusicNotes,
-    RiUserAddLine
+    RiUserAddLine,
+    CiAlarmOn
 }
 
 export default icons
