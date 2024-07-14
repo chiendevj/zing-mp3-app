@@ -14,10 +14,11 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     const [source, setSource] = useState(null)
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
-    const { curSongId, isPlaying } = useSelector(state => state.music)
+    const { curSongId, isPlaying, atAlbum } = useSelector(state => state.music)
     const [prevSongId, setPrevSongId] = useState(null)
     const [isFirst, setIsFirst] = useState(true)
-    const [volume, setVolume] = useState(100)
+    const [volume, setVolume] = useState(50)
+    const [isMuted, setIsMuted] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -77,8 +78,8 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     }, [source, dispatch, isFirst])
 
     useEffect(() => {
-        audioEl.current.volume = volume / 100
-    }, [volume])
+        audioEl.current.volume = isMuted ? 0 : volume / 100
+    }, [volume, isMuted])
 
     const handleTogglePlayMusic = () => {
         setIsFirst(false)
@@ -98,12 +99,22 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
 
     const handleVolumeChange = (value) => {
         setVolume(value)
+        setIsMuted(value === 0)
     }
 
     const handlePlaylistClick = () => {
         toggleSidebarRight();
     }
 
+    const handleToggleMute = () => {
+        setIsMuted(!isMuted)
+    }
+
+    const handleNextSong = () => {
+        if (atAlbum) {
+            console.log(1);
+        }
+    }
 
     return (
         <div className='flex w-full px-5 h-full items-center bg-main-400'>
@@ -132,7 +143,7 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
                     >
                         {isPlaying ? <icons.MdPause size={28} /> : <icons.MdPlayArrow size={28} />}
                     </span>
-                    <span className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.BiSkipNext size={28} /></span>
+                    <span onClick={handleNextSong} className={`p-[5px] mx-2 ${!atAlbum ? 'cursor-no-drop opacity-40' : 'hover:text-main-500 cursor-pointer'}`}><icons.BiSkipNext size={28} /></span>
                     <span title='Bật phát lại tất cả' className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.CiRepeat size={22} /></span>
                 </div>
                 <div className='flex items-center justify-between w-full px-3 relative'>
@@ -151,22 +162,24 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
                 </div>
             </div>
             <div className='w-[30%] flex-auto flex items-center justify-end gap-3'>
-                {volume === 0 ? <icons.SlVolumeOff size={16} className='font-normal' /> : (volume <= 70) ? <icons.SlVolume1 size={16} className='font-normal' /> : <icons.SlVolume2 size={16} className='font-normal' /> }
+                <div onClick={handleToggleMute} className='cursor-pointer px-1 py-[5px] bg-[#c6dcdc] rounded'>
+                    {isMuted || volume === 0 ? <icons.SlVolumeOff size={16} className='font-normal' /> : (volume <= 70) ? <icons.SlVolume1 size={16} className='font-normal' /> : <icons.SlVolume2 size={16} className='font-normal' /> }
+                </div>
                 <div className='w-[70px]'>
-                <Slider
-                    min={0}
-                    max={100}
-                    value={volume}
-                    onChange={handleVolumeChange}
-                    trackStyle={{ backgroundColor: '#0e8080', height: 4 }}
-                    handleStyle={{ borderColor: '#0e8080', opacity:1 , top:'6px' , background: '#0e8080', height: 12, width: 12 }}
-                    railStyle={{ backgroundColor: '#acc2c2', height: 4 }}
-                />
+                    <Slider
+                        min={0}
+                        max={100}
+                        value={isMuted ? 0 : volume}
+                        onChange={handleVolumeChange}
+                        trackStyle={{ backgroundColor: '#0e8080', height: 4 }}
+                        handleStyle={{ borderColor: '#0e8080', opacity:1 , top:'6px' , background: '#0e8080', height: 12, width: 12 }}
+                        railStyle={{ backgroundColor: '#acc2c2', height: 4 }}
+                    />
                 </div>
-                <div  onClick={handlePlaylistClick} title='Danh sách phát' className={`cursor-pointer px-[3px] py-[5px] rounded transition-all duration-200 ${isSidebarRightVisible ? 'bg-main-500 text-main-100' : 'bg-[#c6dcdc] text-main-600'}`} >
-                <icons.PiPlaylist size={18} title='Danh sách phát' />
+                <div onClick={handlePlaylistClick} title='Danh sách phát' className={`cursor-pointer px-1 py-[5px] rounded transition-all duration-200 ${isSidebarRightVisible ? 'bg-main-500 text-main-100' : 'bg-[#c6dcdc] text-main-600'}`} >
+                    <icons.PiPlaylist size={18} title='Danh sách phát' />
                 </div>
-             </div>
+            </div>
         </div>
     )
 }

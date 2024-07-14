@@ -16,6 +16,7 @@ function SongItem({ item }) {
 
     const handleCLickSong = (sid) => {
         dispatch(actions.setCurSongId(sid))
+        dispatch(actions.playAlbum(true))
         dispatch(actions.play(true))
     }
 
