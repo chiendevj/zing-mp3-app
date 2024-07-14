@@ -71,11 +71,11 @@ const Album = () => {
                       </span>
                     ))}
                 </div>
-                <span className='text-xs text-main-700'>{playlistData?.like} người yêu thích</span>
+                <span className='text-xs text-main-700'> { (playlistData?.like / 1000 > 0) ? `${Math.round(playlistData?.like / 1000)}K`: playlistData?.like } người yêu thích</span>
               </div>
               {/* Play all button and options */}
               <div className='w-full flex items-center 1300:flex-col gap-4'>
-                <div className='bg-main-500 rounded-full flex text-sm text-white text-center px-6 py-[9px] hover:opacity-80 cursor-pointer'>
+                <div className='bg-main-500 rounded-full flex gap-1 text-sm font-semibold text-white text-center px-6 py-[9px] hover:opacity-80 cursor-pointer'>
                   {<icons.MdPlayArrow size={20} />} PHÁT TẤT CẢ
                 </div>
                 <div className='flex gap-4 items-center'>

@@ -14,11 +14,13 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     const [source, setSource] = useState(null)
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
-    const { curSongId, isPlaying, atAlbum } = useSelector(state => state.music)
+    const { curSongId, isPlaying, songs } = useSelector(state => state.music)
     const [prevSongId, setPrevSongId] = useState(null)
     const [isFirst, setIsFirst] = useState(true)
     const [volume, setVolume] = useState(50)
     const [isMuted, setIsMuted] = useState(false)
+    const [isShuffle, setIsShuffle] = useState(false)
+    const [isRepeat, setIsRepeat] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -37,7 +39,7 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
                 setSource(res2.data.data['128'])
             } else if (res2.data.err === -1150) {
                 setIsPremium(true)
-                toast.error('Không thể phát bài hát này!')
+                toast.warn('🦄 Không thể phát bài hát này!')
             }
         }
 
@@ -56,8 +58,17 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
             setDuration(audioEl.current.duration)
         }
 
+        const handleEnded = () => {
+            if (isRepeat) {
+                audioEl.current.play()
+            } else {
+                handleNextSong()
+            }
+        }
+
         audioEl.current.addEventListener('timeupdate', handleTimeUpdate)
         audioEl.current.addEventListener('loadedmetadata', handleLoadedMetadata)
+        audioEl.current.addEventListener('ended', handleEnded)
 
         if (source) {
             audioEl.current.src = source
@@ -74,8 +85,9 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
         return () => {
             audioEl.current.removeEventListener('timeupdate', handleTimeUpdate)
             audioEl.current.removeEventListener('loadedmetadata', handleLoadedMetadata)
+            audioEl.current.removeEventListener('ended', handleEnded)
         }
-    }, [source, dispatch, isFirst])
+    }, [source, dispatch, isFirst, isRepeat])
 
     useEffect(() => {
         audioEl.current.volume = isMuted ? 0 : volume / 100
@@ -111,9 +123,47 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     }
 
     const handleNextSong = () => {
-        if (atAlbum) {
-            console.log(1);
+        if (songs) {
+            let currentSongIndex 
+            songs?.items.forEach((item, index) => {
+                if (item.encodeId === curSongId) currentSongIndex = index
+            });
+            if (isShuffle) {
+                let nextSongIndex = Math.floor(Math.random() * songs.items.length)
+                while (nextSongIndex === currentSongIndex) {
+                    nextSongIndex = Math.floor(Math.random() * songs.items.length)
+                }
+                dispatch(actions.setCurSongId(songs.items[nextSongIndex].encodeId))
+            } else {
+                dispatch(actions.setCurSongId(songs.items[(currentSongIndex + 1) % songs.items.length].encodeId))
+            }
         }
+    }
+
+    const handlePrevSong = () => {
+        if (songs) {
+            let currentSongIndex 
+            songs?.items.forEach((item, index) => {
+                if (item.encodeId === curSongId) currentSongIndex = index
+            });
+            if (isShuffle) {
+                let prevSongIndex = Math.floor(Math.random() * songs.items.length)
+                while (prevSongIndex === currentSongIndex) {
+                    prevSongIndex = Math.floor(Math.random() * songs.items.length)
+                }
+                dispatch(actions.setCurSongId(songs.items[prevSongIndex].encodeId))
+            } else {
+                dispatch(actions.setCurSongId(songs.items[(currentSongIndex - 1 + songs.items.length) % songs.items.length].encodeId))
+            }
+        }
+    }
+
+    const handleToggleShuffle = () => {
+        setIsShuffle(!isShuffle)
+    }
+
+    const handleToggleRepeat = () => {
+        setIsRepeat(!isRepeat)
     }
 
     return (
@@ -135,16 +185,16 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
             </div>
             <div className='w-2/5 flex-auto flex flex-col items-center justify-center gap-1'>
                 <div className='flex items-center '>
-                    <span title='Bật phát ngẫu nhiên' className='p-[5px] cursor-pointer mx-2 hover:text-main-500'><icons.CiShuffle size={22} /></span>
-                    <span className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.BiSkipPrevious size={28} /></span>
+                    <span title='Bật phát ngẫu nhiên' onClick={handleToggleShuffle} className={`p-[5px] cursor-pointer mx-2 ${isShuffle ? 'text-main-500' : 'hover:text-main-500'}`}><icons.CiShuffle size={22} /></span>
+                    <span onClick={handlePrevSong} className={`p-[5px] mx-2 ${!songs ? 'cursor-no-drop opacity-40' : 'hover:text-main-500 cursor-pointer'}`}><icons.BiSkipPrevious size={28} /></span>
                     <span
                         className='p-[5px] mx-2 hover:text-main-500 cursor-pointer border border-black rounded-full hover:border-main-500'
                         onClick={handleTogglePlayMusic}
                     >
                         {isPlaying ? <icons.MdPause size={28} /> : <icons.MdPlayArrow size={28} />}
                     </span>
-                    <span onClick={handleNextSong} className={`p-[5px] mx-2 ${!atAlbum ? 'cursor-no-drop opacity-40' : 'hover:text-main-500 cursor-pointer'}`}><icons.BiSkipNext size={28} /></span>
-                    <span title='Bật phát lại tất cả' className='p-[5px] mx-2 hover:text-main-500 cursor-pointer'><icons.CiRepeat size={22} /></span>
+                    <span onClick={handleNextSong} className={`p-[5px] mx-2 ${!songs ? 'cursor-no-drop opacity-40' : 'hover:text-main-500 cursor-pointer'}`}><icons.BiSkipNext size={28} /></span>
+                    <span title='Bật phát lại tất cả' onClick={handleToggleRepeat} className={`p-[5px] mx-2 cursor-pointer ${isRepeat ? 'text-main-500' : 'hover:text-main-500'}`}><icons.CiRepeat size={22} /></span>
                 </div>
                 <div className='flex items-center justify-between w-full px-3 relative'>
                     <span className='text-xs text-main-700'>{Math.floor(currentTime / 60)}:{Math.floor(currentTime % 60).toString().padStart(2, '0')}</span>
