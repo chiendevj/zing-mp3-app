@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import icons from '../untils/icons'
 import moment from 'moment';
 import * as actions from '../store/actions'
@@ -50,4 +50,4 @@ function SongItem({ item }) {
     )
 }
 
-export default SongItem
+export default memo(SongItem)

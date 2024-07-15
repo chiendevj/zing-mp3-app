@@ -2,7 +2,8 @@
 import actionTypes from '../actions/actionTypes';
 
 const initState = {
-    banner: []
+    banner: [],
+    hEditorThemes: [],
 };
 
 const appReducer = (state = initState, action) => {
@@ -10,7 +11,15 @@ const appReducer = (state = initState, action) => {
         case actionTypes.GET_HOME:
             return {
                 ...state,
-                banner: action.homeData?.find(item => item.sectionType === 'banner')?.items || []
+                banner: action.homeData?.find(item => item.sectionId === 'hSlider')?.items || [],
+                hEditorThemes: [
+                    action.homeData?.find(item => item.sectionId === 'hEditorTheme') || [],
+                    action.homeData?.find(item => item.sectionId === 'hEditorTheme1') || [],
+                    action.homeData?.find(item => item.sectionId === 'hEditorTheme2') || [],
+                    action.homeData?.find(item => item.sectionId === 'hEditorTheme3') || [],
+                    action.homeData?.find(item => item.sectionId === 'hEditorTheme4') || [],
+                    action.homeData?.find(item => item.sectionId === 'hEditorTheme5') || [],
+                ],
             };
 
         default:

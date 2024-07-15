@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import icons from '../untils/icons';
 
 function SingerItem({artist}) {
@@ -16,4 +16,4 @@ function SingerItem({artist}) {
     )
 }
 
-export default SingerItem
+export default memo(SingerItem)
