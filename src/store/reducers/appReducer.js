@@ -4,6 +4,8 @@ import actionTypes from '../actions/actionTypes';
 const initState = {
     banner: [],
     hEditorThemes: [],
+    releaseList: [],
+    rankingReleaseList: [],
 };
 
 const appReducer = (state = initState, action) => {
@@ -20,6 +22,9 @@ const appReducer = (state = initState, action) => {
                     action.homeData?.find(item => item.sectionId === 'hEditorTheme4') || [],
                     action.homeData?.find(item => item.sectionId === 'hEditorTheme5') || [],
                 ],
+                releaseList: action.homeData?.find(item => item.sectionType === 'new-release') || [],
+                rankingReleaseList: action.homeData?.find(item => item.sectionId === 'hNewrelease') || [],
+
             };
 
         default:

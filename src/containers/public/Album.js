@@ -42,18 +42,26 @@ const Album = () => {
   };
 
   return (
-    <div className='w-full mt-5'>
+    <div className='w-full mt-5 px-14'>
       <div className='w-full flex 1300:flex-row flex-col gap-6'>
         {/* Left section with album details */}
         <div className='flex-none 1300:w-[30%] w-full flex-col pt-0 1300:pt-24'>
           <div className='flex 1300:flex-col items-center gap-5'>
             {/* Album thumbnail */}
-            <div className='overflow-hidden rounded-lg shadow-md'>
-              <img
-                src={playlistData?.thumbnailM}
-                alt={playlistData?.title}
-                className='hover:scale-110 transition-transform w-full'
-              />
+            <div className='relative rounded-lg overflow-hidden group'>
+                <img 
+                    src={playlistData?.thumbnailM} 
+                    alt={playlistData?.title} 
+                    title={playlistData?.title} 
+                    className='w-full h-auto transform transition-transform duration-500 group-hover:scale-110' 
+                />
+                <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300'>
+                    <button 
+                        className='absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300' 
+                    >
+                        <icons.MdPlayArrow size={35} />
+                    </button>
+                </div>
             </div>
             {/* Album information */}
             <div className='w-full flex flex-col justify-between gap-4'>

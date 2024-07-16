@@ -5,7 +5,6 @@ import * as actions from '../store/actions'
 import icons from '../untils/icons'
 import { toast } from 'react-toastify'
 import Slider from 'rc-slider'
-import 'rc-slider/assets/index.css'
 
 function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     const audioEl = useRef(new Audio())

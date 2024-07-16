@@ -25,14 +25,14 @@ function Slider() {
     const getVisibleItems = () => {
         let visibleItems = [];
         for (let i = 0; i < itemsToShow; i++) {
-            visibleItems.push(banner[(cycleIndex + i) % banner.length]);
+            visibleItems.push(banner[(cycleIndex + i) % banner?.length]);
         }
         return visibleItems;
     };
 
     const handleClickBanner = (item) => {
         if (item?.type === 1) {
-            dispatch(actions.setCurSongId(item.encodeId))
+            dispatch(actions.setCurSongId(item?.encodeId))
             dispatch(actions.playAlbum(false))
             // dispatch(actions.play(true))
         } else if (item?.type === 4) {
@@ -53,7 +53,7 @@ function Slider() {
                     onClick={() => handleClickBanner(item)}
                     className='cursor-pointer flex-1 object-contain transition-transform duration-1000 rounded-lg w-1/3'
                     style={{
-                        transform: `translateX(${index * 5}%)`
+                        transform: `translateX(${index * 3}%)`
                     }}
                     alt={`Banner ${index + 1}`}
                 />
