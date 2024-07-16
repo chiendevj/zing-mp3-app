@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import icons from '../untils/icons'
 import PlaylistItem from './PlaylistItem';
 
-const Section = ({hEditorTheme}) => {
+const PlaylistSection = ({hEditorTheme}) => {
     return (
         <div className='container px-14 mt-12'>
             <h3 className='flex justify-between items-center mb-5'>
@@ -22,4 +22,4 @@ const Section = ({hEditorTheme}) => {
     )
 }
 
-export default memo(Section)
+export default memo(PlaylistSection)

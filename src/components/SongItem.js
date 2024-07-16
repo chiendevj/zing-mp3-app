@@ -16,16 +16,31 @@ function SongItem({ item }) {
 
     const handleCLickSong = (sid) => {
         dispatch(actions.setCurSongId(sid))
-        dispatch(actions.playAlbum(true))
+        // dispatch(actions.playAlbum(true))
         dispatch(actions.play(true))
     }
 
     return (
         <>
-            <div className='flex w-full gap-1 text-xs text-main-700 font-semibold items-center p-[10px] border-b border-[#c4cece] rounded hover:bg-main-200 hover:border-main-200 cursor-pointer'>
+            <div className='group flex w-full gap-1 text-xs text-main-700 font-semibold items-center p-[10px] border-b border-[#c4cece] rounded hover:bg-main-200 hover:border-main-200 cursor-pointer'>
                 <div className='w-1/2 flex-none text-start flex items-center gap-3'>
                     <span>{<icons.PiMusicNotes size={14} />}</span>
-                    <img onClick={() => { handleCLickSong(item.encodeId) }} src={item?.thumbnailM} alt='logo' className='rounded w-10 h-10' />
+                    <div className='relative rounded overflow-hidden w-10 h-10'>
+                        <img
+                            src={item?.thumbnailM}
+                            alt={item?.title}
+                            title={item?.title}
+                            className='w-full h-auto transform transition-transform duration-500 group-hover:scale-110'
+                        />
+                        <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300'>
+                            <button
+                                onClick={() => { handleCLickSong(item.encodeId) }} 
+                                className='absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 transition-opacity duration-200'
+                            >
+                                <icons.MdPlayArrow size={25} />
+                            </button>
+                        </div>
+                    </div>
                     <div className='flex flex-col'>
                         <span onClick={() => { handleCLickSong(item.encodeId) }} className='text-sm text-[#32323d] font-medium'>{item?.title.length >= 30 ? `${item?.title.trim().slice(0, 30)}...` : item?.title} <span>{item?.err}</span> </span>
                         <div className='text-xs text-main-700 font-normal'>

@@ -7,8 +7,16 @@ export {default as Player} from './Player'
 export {default as ListSong} from './ListSong'
 export {default as SingerItem} from './SingerItem' 
 export {default as SongItem} from './SongItem'  
-export {default as Section} from './Section'  
+export {default as PlaylistSection} from './PlaylistSection'  
+export {default as ReleaseSection} from './ReleaseSection'  
 export {default as PlaylistItem} from './PlaylistItem'  
+export {default as CategoriesRelaseButton} from './CategoriesRelaseButton'  
+export {default as SongReleaseItem} from './SongReleaseItem'
+export {default as RankingReleaseSection} from './RankingReleaseSection'  
+export {default as RankingReleaseItem} from './RankingReleaseItem'  
+
+
+
 
 
 

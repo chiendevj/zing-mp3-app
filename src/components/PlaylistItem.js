@@ -1,11 +1,9 @@
 import React, { memo } from 'react';
 import icons from '../untils/icons';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function PlaylistItem({ item }) {
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
 
     const truncateDescription = (description, maxLength) => {
         if (description.length <= maxLength) return description;
@@ -17,19 +15,26 @@ function PlaylistItem({ item }) {
         }
         return truncated + '...';
     };
-     
+
     const handleClickPlaylistItem = (item) => {
-        const albumPath = item?.link.split('.')[0]
-        navigate(albumPath)
-    }
+        const albumPath = item?.link.split('.')[0];
+        navigate(albumPath);
+    };
 
     return (
         <div className='flex flex-col w-1/4 px-3'>
             <div className='relative rounded-lg overflow-hidden group'>
-                <img src={item.thumbnailM} alt={item.title} title={item.title} className='w-full h-auto border' />
+                <img 
+                    src={item.thumbnailM} 
+                    alt={item.title} 
+                    title={item.title} 
+                    className='w-full h-auto transform transition-transform duration-500 group-hover:scale-110' 
+                />
                 <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300'>
-                    <button className='absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-t-white'  
-                    onClick={() => handleClickPlaylistItem(item)} >
+                    <button 
+                        className='absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300'  
+                        onClick={() => handleClickPlaylistItem(item)} 
+                    >
                         <icons.MdPlayArrow size={35} />
                     </button>
                 </div>
