@@ -8,6 +8,9 @@ const path = {
     PLAYLIST__TITLE_PID: 'playlist/:title/:pid',
     ZING_CHART: 'zing-chart',
     HUB: 'hub',
+    RELEASE_NEW: 'moi-phat-hanh',
+    TOP_100: 'top100',
+
 
 }
 

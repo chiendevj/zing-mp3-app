@@ -1,4 +1,4 @@
-import { Home, Login, Public, Personal, Album, ZingChart, Hub } from './containers/public/index'
+import { Home, Login, Public, Personal, Album, ZingChart, Hub, ReleaseNew, Top100 } from './containers/public/index'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'slick-carousel/slick/slick.css';
@@ -28,12 +28,13 @@ function App() {
           <Route path={path.PLAYLIST__TITLE_PID} element={<Album />} />
           <Route path={path.ZING_CHART} element={<ZingChart />} />
           <Route path={path.HUB} element={<Hub />} />
-
+          <Route path={path.RELEASE_NEW} element={<ReleaseNew />} />
+          <Route path={path.TOP_100} element={<Top100 />} />
         </Route>
         
       </Routes>
       <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
