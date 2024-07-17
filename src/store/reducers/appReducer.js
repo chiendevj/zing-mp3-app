@@ -6,6 +6,7 @@ const initState = {
     hEditorThemes: [],
     releaseList: [],
     rankingReleaseList: [],
+    zingchartBanners: [],
 };
 
 const appReducer = (state = initState, action) => {
@@ -24,7 +25,8 @@ const appReducer = (state = initState, action) => {
                 ],
                 releaseList: action.homeData?.find(item => item.sectionType === 'new-release') || [],
                 rankingReleaseList: action.homeData?.find(item => item.sectionId === 'hNewrelease') || [],
-
+                zingchartBanners: action.homeData?.find(item => item.sectionType === 'weekChart').items || [],
+                
             };
 
         default:

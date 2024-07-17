@@ -3,8 +3,8 @@ import { PlaylistSection, RankingReleaseSection, ReleaseSection, Slider } from '
 import { useSelector } from 'react-redux';
 
 function Home() {
-  const { hEditorThemes, releaseList, rankingReleaseList  } = useSelector(state => state.app);
-
+  const { hEditorThemes, releaseList, rankingReleaseList, zingchartBanners  } = useSelector(state => state.app);
+  console.log(zingchartBanners);
   return (
     <div className='overflow-y-auto'>
       {/* Slider */}
@@ -21,6 +21,9 @@ function Home() {
       <RankingReleaseSection rankingReleaseList={rankingReleaseList} />
       {/* zingchart */}
 
+      <div className='px-14'>
+        Zing chart week
+      </div>
       {/* Top 100 */}
 
       {/* Album hot */}

@@ -1,13 +1,13 @@
 import React from 'react';
 import logoFull from '../assets/logo.svg';
 import logoSmall from '../assets/logo_mini.svg';
-import { SidebarMenu } from '../untils/menu';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import path from '../untils/path';
 import Scrollbars from 'react-custom-scrollbars-2';
+import path from '../untils/path';
+import { SidebarMenu, SidebarMenu2 } from '../untils/menu';
 
-const notActiveStyle = 'py-3 1300:px-[25px] 1300:w-full flex gap-2 1300:justify-start justify-center items-center font-semibold text-sm text-gray-500 hover:text-main-500';
+const notActiveStyle = 'py-3 1300:px-[25px] 1300:w-full flex gap-2 1300:justify-start justify-center items-center font-semibold text-sm text-main-600 hover:text-main-500';
 const activeStyle = 'bg-main-100 py-3 1300:px-[25px] flex gap-2 1300:justify-start justify-center items-center font-semibold text-sm text-main-500 hover:text-main-500 border-l-4 border-main-500';
 
 function SidebarLeft() {
@@ -50,28 +50,45 @@ function SidebarLeft() {
                     className='h-[70px] w-full 1300:py-[15px] 1300:px-[25px] cursor-pointer flex 1300:justify-start justify-center items-center'
                 >
                     {/* Full logo for screens >= 1300px */}
+                    {/* Replace logoFull and logoSmall with your actual imports */}
                     <img src={logoFull} alt="Zing MP3" className='hidden 1300:block w-[120px] h-10' />
                     {/* Small logo for screens < 1300px */}
                     <img src={logoSmall} alt="Zing MP3" className='block 1300:hidden w-[45px] h-[45px]' />
                 </div>
 
                 {/* Navigation */}
-                <div className='flex flex-col mb-5'>
-                    {SidebarMenu.map(item => (
-                        <NavLink
-                            key={item.path}
-                            to={item.path}
-                            className={({ isActive }) => isActive ? activeStyle : notActiveStyle}
-                            title={item.text}
-                        >
-                            {item.icon}
-                            <span className='hidden 1300:block font-medium'>{item.text}</span>
-                        </NavLink>
-                    ))}
+                <div className='flex flex-col gap-5'>
+                    <div className='flex flex-col mb-5 '>
+                        {SidebarMenu.map(item => (
+                            <NavLink
+                                key={item.path}
+                                to={item.path}
+                                className={({ isActive }) => isActive ? activeStyle : notActiveStyle}
+                                title={item.text}
+                            >
+                                {item.icon}
+                                <span className='hidden 1300:block font-medium'>{item.text}</span>
+                            </NavLink>
+                        ))}
+                    </div>
+                    
+                    <div className='flex flex-col mb-5 '>
+                        {SidebarMenu2.map(item => (
+                            <NavLink
+                                key={item.path}
+                                to={item.path}
+                                className={({ isActive }) => isActive ? activeStyle : notActiveStyle}
+                                title={item.text}
+                            >
+                                {item.icon}
+                                <span className='hidden 1300:block font-medium'>{item.text}</span>
+                            </NavLink>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Option */}
-                
+
             </Scrollbars>
         </div>
     );

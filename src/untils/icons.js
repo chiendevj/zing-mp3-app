@@ -1,7 +1,5 @@
-import { MdOutlineLibraryMusic, MdPlayArrow, MdPause } from "react-icons/md";
-import { FiDisc } from "react-icons/fi";
+import { MdPlayArrow, MdPause } from "react-icons/md";
 import { GoArrowLeft, GoArrowRight, GoPerson, GoChevronRight } from "react-icons/go";
-import { LiaChartLineSolid } from "react-icons/lia";
 import { TfiSearch } from "react-icons/tfi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai"
 import { RxDotsHorizontal } from "react-icons/rx";
@@ -10,14 +8,13 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { PiPlaylist, PiMusicNotes, PiMusicNotesPlusLight } from "react-icons/pi";
 import { SlVolume1, SlVolume2, SlVolumeOff } from "react-icons/sl";
 import { RiUserAddLine } from "react-icons/ri";
+import {Discover, Personal, ZingChart, Release, Hub, Top100} from '../assets/icons'
 
 const icons = {
+    Discover, Personal, ZingChart, Release, Hub, Top100,
     GoChevronRight,
-    MdOutlineLibraryMusic,
-    FiDisc,
     GoArrowLeft,
     GoArrowRight,
-    LiaChartLineSolid,
     TfiSearch,
     GoPerson,
     AiOutlineHeart,
