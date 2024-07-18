@@ -7,6 +7,9 @@ const actionTypes = {
     SET_ALBUM: 'SET_ALBUM',
     PLAYLIST: 'PLAYLIST',
 
+    // ARTIST
+    ARTIST: 'ARTIST'
+
 
 }
 

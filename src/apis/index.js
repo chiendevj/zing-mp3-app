@@ -1,4 +1,5 @@
 export * from './home'
 export * from './music'
-export * from './hub'
+export * from './artist'
+
 

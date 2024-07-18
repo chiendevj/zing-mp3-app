@@ -1,19 +1,23 @@
-import React from 'react';
-import { PlaylistSection, RankingReleaseSection, ReleaseSection, Slider } from '../../components';
+import React, { useEffect } from 'react';
+import { Partner, PlaylistSection, RankingReleaseSection, ReleaseSection, Slider } from '../../components';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const { 
-      hEditorThemes, releaseList, rankingReleaseList,
-      zingchartBanners, top100, albumHot 
-    } = useSelector(state => state.app);
+  const {
+    hEditorThemes, releaseList, rankingReleaseList,
+    zingchartBanners, top100, albumHot
+  } = useSelector(state => state.app);
 
   const navigate = useNavigate()
-  
-  const handleClickBannerChart = (link) => { 
+
+  const handleClickBannerChart = (link) => {
     navigate(link.split('.')[0])
-   }
+  }
+
+  useEffect(() => {
+    document.title = 'Zing MP3 - Nghe nhạc mới, HOT nhất | miễn phí';
+  }, []);
 
   return (
     <div className='overflow-y-auto'>
@@ -33,7 +37,7 @@ function Home() {
 
       <div className="px-14 w-full flex">
         {zingchartBanners?.map((item) => (
-          <div className="w-1/3 px-2" onClick={() => {handleClickBannerChart(item.link)}}>
+          <div className="w-1/3 px-2" onClick={() => { handleClickBannerChart(item.link) }}>
             <div className="w-full rounded overflow-hidden group cursor-pointer">
               <div className="transform transition-transform duration-300 group-hover:scale-110">
                 <img src={item.cover} alt={item.link} />
@@ -45,14 +49,14 @@ function Home() {
 
       {/* Top 100 */}
       <PlaylistSection item={top100} />
-    
+
       {/* Album hot */}
       <PlaylistSection item={albumHot} />
 
-      {/* Radio */ }
-        
-      {/* Đối tác */}
+      {/* Radio */}
 
+      {/* Đối tác */}
+      <Partner />
 
     </div>
   );

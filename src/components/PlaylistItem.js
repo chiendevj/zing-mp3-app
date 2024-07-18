@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import icons from '../untils/icons';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function PlaylistItem({ item }) {
     const navigate = useNavigate();
@@ -46,12 +46,17 @@ function PlaylistItem({ item }) {
                 <span className='text-sm text-main-700 font-medium'>
                     {item.sortDescription
                         ? truncateDescription(item.sortDescription, 50)
-                        : item.artists.map((artist, index) => (
-                            <span key={artist.id}>
-                                {artist.name}
-                                {index < item.artists.length - 1 ? ', ' : ''}
-                            </span>
-                        ))}
+                        : item?.artists &&
+                            item.artists.map((artist, index) => (
+                                <NavLink
+                                    key={artist.id}
+                                    to={`/${artist.alias}`}
+                                    className="cursor-pointer hover:text-main-500 hover:underline"
+                                >
+                                    {artist.name}
+                                    {index !== item.artists.length - 1 && ', '}
+                                </NavLink>
+                            ))}
                 </span>
             </span>
         </div>
