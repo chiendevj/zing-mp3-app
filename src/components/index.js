@@ -14,6 +14,8 @@ export {default as CategoriesRelaseButton} from './CategoriesRelaseButton'
 export {default as SongReleaseItem} from './SongReleaseItem'
 export {default as RankingReleaseSection} from './RankingReleaseSection'  
 export {default as RankingReleaseItem} from './RankingReleaseItem'  
+export {default as Partner} from './Partner'  
+
 
 
 

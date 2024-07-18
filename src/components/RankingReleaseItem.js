@@ -3,10 +3,15 @@ import moment from 'moment/moment';
 import icons from '../untils/icons';
 import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
 const RankingReleaseItem = ({ item, id }) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const handleClickArtist = (name) => {
+    navigate(name , { replace: true })
+}
   return (
   <div className='bg-main-200 rounded-md p-[10px] flex cursor-pointer'>
     <div className='relative rounded-md overflow-hidden group w-[120px] h-[120px] flex-none'>
@@ -31,13 +36,17 @@ const RankingReleaseItem = ({ item, id }) => {
       <div>
         <span className='text-main-600 text-sm font-medium'>{item.title}</span>
         <div className='text-xs text-main-700 font-normal'>
-          {item?.artists &&
-            item.artists.map((artist, index) => (
-              <span key={artist.id}>
-                {artist.name}
-                {index !== item.artists.length - 1 && ', '}
-              </span>
-            ))}
+        {item?.artists &&
+                        item.artists.map((artist, index) => (
+                            <NavLink
+                                key={artist.id}
+                                to={`/${artist.alias}`}
+                                className="cursor-pointer hover:text-main-500 hover:underline"
+                            >
+                                {artist.name}
+                                {index !== item.artists.length - 1 && ', '}
+                            </NavLink>
+                        ))}
         </div>
       </div>
       <div className='flex justify-between items-baseline'>
