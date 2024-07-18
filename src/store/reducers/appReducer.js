@@ -7,6 +7,8 @@ const initState = {
     releaseList: [],
     rankingReleaseList: [],
     zingchartBanners: [],
+    top100: [],
+    albumHot: [],
 };
 
 const appReducer = (state = initState, action) => {
@@ -26,7 +28,8 @@ const appReducer = (state = initState, action) => {
                 releaseList: action.homeData?.find(item => item.sectionType === 'new-release') || [],
                 rankingReleaseList: action.homeData?.find(item => item.sectionId === 'hNewrelease') || [],
                 zingchartBanners: action.homeData?.find(item => item.sectionType === 'weekChart').items || [],
-                
+                top100: action.homeData?.find(item => item.sectionId === 'h100') || [],
+                albumHot: action.homeData?.find(item => item.sectionId === 'hAlbum') || [],
             };
 
         default:

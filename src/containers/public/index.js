@@ -7,6 +7,8 @@ export {default as ZingChart} from './ZingChart'
 export {default as Hub} from './Hub'
 export {default as ReleaseNew} from './ReleaseNew'
 export {default as Top100} from './Top100'
+export {default as WeekChart} from './WeekChart'
+
 
 
 

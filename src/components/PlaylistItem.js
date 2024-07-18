@@ -22,25 +22,37 @@ function PlaylistItem({ item }) {
     };
 
     return (
-        <div className='flex flex-col w-1/4 px-3'>
+        <div className='flex flex-col 1300:w-1/5 w-1/4 px-3'>
             <div className='relative rounded-lg overflow-hidden group'>
-                <img 
-                    src={item.thumbnailM} 
-                    alt={item.title} 
-                    title={item.title} 
-                    className='w-full h-auto transform transition-transform duration-500 group-hover:scale-110' 
+                <img
+                    src={item.thumbnailM}
+                    alt={item.title}
+                    title={item.title}
+                    className='w-full h-auto transform transition-transform duration-500 group-hover:scale-110'
                 />
                 <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300'>
-                    <button 
-                        className='absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300'  
-                        onClick={() => handleClickPlaylistItem(item)} 
+                    <button
+                        className='absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300'
+                        onClick={() => handleClickPlaylistItem(item)}
                     >
                         <icons.MdPlayArrow size={35} />
                     </button>
                 </div>
             </div>
-            <span className='text-sm text-main-700 font-medium mt-3'>
-                {truncateDescription(item.sortDescription, 50)}
+            <span className='flex flex-col mt-2 gap-1'>
+                <span className='text-sm text-main-600 font-bold'>
+                    {truncateDescription(item.title, 30)}
+                </span>
+                <span className='text-sm text-main-700 font-medium'>
+                    {item.sortDescription
+                        ? truncateDescription(item.sortDescription, 50)
+                        : item.artists.map((artist, index) => (
+                            <span key={artist.id}>
+                                {artist.name}
+                                {index < item.artists.length - 1 ? ', ' : ''}
+                            </span>
+                        ))}
+                </span>
             </span>
         </div>
     );
