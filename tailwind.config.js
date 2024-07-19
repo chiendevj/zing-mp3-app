@@ -10,6 +10,7 @@ module.exports = {
         'main-300': '#ced9d9',
         'main-400': '#c0d8d8',
         'main-500': '#0e8080',
+        'main-600': '#c4cdce',
       },
       colors: {
         'main-100': '#e7ecec',

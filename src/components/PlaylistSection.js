@@ -23,8 +23,11 @@ const PlaylistSection = ({ item }) => {
     }, []);
 
     return (
+        
         <div className='container mt-12'>
+        {item?.title && (
             <TitleSection title = {item?.title} />
+                    )}
             <div className='w-full my-5 flex flex-col'>
                 <div className='relative overflow-hidden font-bold'>
                     <div className='flex overflow-hidden'>
@@ -35,6 +38,7 @@ const PlaylistSection = ({ item }) => {
                 </div>
             </div>
         </div>
+        
     );
 };
 

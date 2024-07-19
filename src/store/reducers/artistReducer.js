@@ -4,6 +4,7 @@ const initState = {
     artistBasicInfo: {},
     topSongs: [],
     aAlbums: [],
+    aMV: [],
 };
 
 const artistReducer = (state = initState, action) => {
@@ -16,12 +17,14 @@ const artistReducer = (state = initState, action) => {
                     'thumbnail' : action.artistData?.thumbnail || null,
                     'totalFollow' : action.artistData?.totalFollow || null,
                     'awards' : action.artistData?.awards || null,
+                    'aNewRelease':  action.artistData?.topAlbum || [],
                 },
                 topSongs: action.artistData?.sections.find(item => item.sectionId === 'aSongs') || [],
                 aAlbums: [
                     action.artistData?.sections.find(item => item.sectionId === 'aSingle') || [],
                     action.artistData?.sections.find(item => item.sectionId === 'aAlbum') || [],
                 ],
+                aMV: action.artistData?.sections.find(item => item.sectionId === 'aMV') || [],
             };
 
         default:

@@ -52,13 +52,13 @@ function Home() {
       {/* Top 100 */}
       <div className='px-14'>
         <PlaylistSection item={top100} />
-
       </div>
+      
       {/* Album hot */}
       <div className='px-14'>
         <PlaylistSection item={albumHot} />
-
       </div>
+
       {/* Radio */}
 
       {/* Đối tác */}
