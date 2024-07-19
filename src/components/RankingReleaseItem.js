@@ -3,15 +3,12 @@ import moment from 'moment/moment';
 import icons from '../untils/icons';
 import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const RankingReleaseItem = ({ item, id }) => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const handleClickArtist = (name) => {
-    navigate(name , { replace: true })
-}
+
   return (
   <div className='bg-main-200 rounded-md p-[10px] flex cursor-pointer'>
     <div className='relative rounded-md overflow-hidden group w-[120px] h-[120px] flex-none'>

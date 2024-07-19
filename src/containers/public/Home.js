@@ -28,7 +28,9 @@ function Home() {
       {/* Playlist */}
       {hEditorThemes.map((hEditorTheme) => (
         hEditorTheme?.items?.length > 0 && (
-          <PlaylistSection item={hEditorTheme} key={hEditorTheme.sectionId} />
+          <div className='px-14'>
+            <PlaylistSection item={hEditorTheme} key={hEditorTheme.sectionId} />
+          </div>
         )
       ))}
       {/* BXH mới */}
@@ -48,11 +50,15 @@ function Home() {
       </div>
 
       {/* Top 100 */}
-      <PlaylistSection item={top100} />
+      <div className='px-14'>
+        <PlaylistSection item={top100} />
 
+      </div>
       {/* Album hot */}
-      <PlaylistSection item={albumHot} />
+      <div className='px-14'>
+        <PlaylistSection item={albumHot} />
 
+      </div>
       {/* Radio */}
 
       {/* Đối tác */}

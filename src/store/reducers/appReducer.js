@@ -1,4 +1,3 @@
-// reducers/appReducer.js
 import actionTypes from '../actions/actionTypes';
 
 const initState = {

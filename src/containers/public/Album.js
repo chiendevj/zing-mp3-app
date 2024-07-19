@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import * as apis from '../../apis';
 import icons from '../../untils/icons';
 import moment from 'moment';
 import 'moment-duration-format';
+import numeral from 'numeral';
 import { ListSong, SingerItem } from '../../components';
 import { useDispatch } from 'react-redux';
 import actionTypes from '../../store/actions/actionTypes';
@@ -11,7 +12,6 @@ import actionTypes from '../../store/actions/actionTypes';
 const Album = () => {
   const { pid } = useParams();
   const [playlistData, setPlaylistData] = useState(null);
-  const [currentStart, setCurrentStart] = useState(0);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,17 +35,6 @@ const Album = () => {
     }
   }, [playlistData]);
 
-  const handleNext = () => {
-    if (currentStart + 4 < playlistData.artists.length) {
-      setCurrentStart(currentStart + 4);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentStart - 4 >= 0) {
-      setCurrentStart(currentStart - 4);
-    }
-  };
 
   return (
     <div className="w-full mt-5 px-14">
@@ -93,9 +82,7 @@ const Album = () => {
                     ))}
                 </div>
                 <span className="text-xs text-main-700">
-                  {(playlistData?.like / 1000 > 0
-                    ? `${Math.round(playlistData?.like / 1000)}K`
-                    : playlistData?.like) + ' người yêu thích'}
+                  {numeral(playlistData?.like).format('0a').toUpperCase() +' người yêu thích'}
                 </span>
               </div>
               {/* Play all button and options */}
@@ -134,29 +121,13 @@ const Album = () => {
             Nghệ Sĩ Tham Gia
           </h3>
           <div className="relative overflow-hidden font-bold">
-            <button
-              className={`absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-100 duration-500 p-3 rounded-full ${
-                currentStart === 0 ? 'hidden' : ''
-              }`}
-              onClick={handlePrev}
-            >
-              {'<'}
-            </button>
             <div className="flex overflow-hidden">
               {playlistData?.artists
-                ?.slice(currentStart, currentStart + 4)
+                ?.slice(0, 4)
                 .map((artist) => (
                   <SingerItem artist={artist} key={artist.id} />
                 ))}
             </div>
-            <button
-              className={`absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-100 duration-500 p-3 rounded-full ${
-                currentStart + 4 >= playlistData?.artists?.length ? 'hidden' : ''
-              }`}
-              onClick={handleNext}
-            >
-              {'>'}
-            </button>
           </div>
         </div>
       )}

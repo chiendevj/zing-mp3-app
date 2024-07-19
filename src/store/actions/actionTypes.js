@@ -8,7 +8,7 @@ const actionTypes = {
     PLAYLIST: 'PLAYLIST',
 
     // ARTIST
-    ARTIST: 'ARTIST'
+    GET_ARTIST: 'GET_ARTIST'
 
 
 }

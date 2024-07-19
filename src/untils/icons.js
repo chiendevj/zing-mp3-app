@@ -8,10 +8,10 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { PiPlaylist, PiMusicNotes, PiMusicNotesPlusLight } from "react-icons/pi";
 import { SlVolume1, SlVolume2, SlVolumeOff } from "react-icons/sl";
 import { RiUserAddLine } from "react-icons/ri";
-import {Discover, Personal, ZingChart, Release, Hub, Top100} from '../assets/icons'
+import {Discover, Personal, ZingChart, Release, Hub, Top100, Award} from '../assets/icons'
 
 const icons = {
-    Discover, Personal, ZingChart, Release, Hub, Top100,
+    Discover, Personal, ZingChart, Release, Hub, Top100, Award,
     GoChevronRight,
     GoArrowLeft,
     GoArrowRight,
