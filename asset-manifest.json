@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/chiendevj/zing-mp3-app/static/css/main.ef4a3d67.css",
+    "main.js": "/chiendevj/zing-mp3-app/static/js/main.fda019df.js",
+    "static/media/logo.svg": "/chiendevj/zing-mp3-app/static/media/logo.946824c8e549e6bb972d924e995191f6.svg",
+    "static/media/logo_mini.svg": "/chiendevj/zing-mp3-app/static/media/logo_mini.54a8be8a072059018db725f31d70a434.svg",
+    "static/media/slick.svg": "/chiendevj/zing-mp3-app/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/chiendevj/zing-mp3-app/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/chiendevj/zing-mp3-app/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/chiendevj/zing-mp3-app/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/chiendevj/zing-mp3-app/index.html",
+    "main.ef4a3d67.css.map": "/chiendevj/zing-mp3-app/static/css/main.ef4a3d67.css.map",
+    "main.fda019df.js.map": "/chiendevj/zing-mp3-app/static/js/main.fda019df.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef4a3d67.css",
+    "static/js/main.fda019df.js"
+  ]
+}
