@@ -44,7 +44,7 @@ function Public() {
                 <div className='w-[70px] 1300:w-[240px] flex-none '>
                     <SidebarLeft />
                 </div>
-                <div className='flex flex-col flex-auto relative my-[90px]'>
+                <div className='flex flex-col flex-auto relative mt-[70px] mb-[90px]'>
                     <div 
                     className={`fixed z-20 top-0 1300:left-[240px] left-[70px] ${isSidebarRightVisible ? 'right-[330px]' : 'right-0'} 
                                 h-[70px] px-14 flex items-center bg-main-300 transition-all duration-300 
@@ -59,7 +59,7 @@ function Public() {
                         className="scrollbar-container"
                         ref={scrollbarRef}
                     >
-                        <div className='flex-auto mb-5'>
+                        <div className='flex-auto'>
                             <Outlet />
                         </div>
                     </Scrollbars>

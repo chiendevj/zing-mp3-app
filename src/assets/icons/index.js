@@ -4,6 +4,8 @@ export {default as Personal} from './personal'
 export {default as Release} from './release'
 export {default as Top100} from './top100'
 export {default as ZingChart} from './zingchart'
+export {default as Award} from './award'
+
 
 
 

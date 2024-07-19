@@ -1,9 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
-import icons from '../untils/icons';
 import RankingReleaseItem from './RankingReleaseItem';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import TitleSection from './TitleSection';
 const RankingReleaseSection = ({ rankingReleaseList }) => {
   const settings = {
     infinite: true,
@@ -26,12 +26,7 @@ const RankingReleaseSection = ({ rankingReleaseList }) => {
 
   return (
     <div className='container px-14 my-12 overflow-hidden'>
-      <h3 className='flex justify-between items-center mb-5'>
-        <span className='text-xl font-bold'>{rankingReleaseList?.title}</span>
-        <span className='flex gap-1 items-center text-xs font-medium cursor-pointer text-main-700 hover:text-main-500'>
-          TẤT CẢ <icons.GoChevronRight size={20} />
-        </span>
-      </h3>
+      <TitleSection title = {rankingReleaseList?.title} />
       <div>
         <Slider {...settings}>
           {rankingReleaseList?.items?.map((item, index) => (

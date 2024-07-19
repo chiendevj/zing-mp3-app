@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import musicReducer from "./musicReducer";
 import { persistReducer } from "redux-persist";
+import artistReducer from "./artistReducer";
 
 const commonConfig = {
     storage: storage,
@@ -19,7 +20,8 @@ const musicConfig = {
 
 const rootReducer = combineReducers({
     app: appReducer,
-    music: persistReducer(musicConfig, musicReducer)
+    music: persistReducer(musicConfig, musicReducer),
+    artist: artistReducer,
 })
 
 export default rootReducer

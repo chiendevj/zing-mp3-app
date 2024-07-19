@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'rc-slider/assets/index.css'
+import 'react-tooltip/dist/react-tooltip.css'
 import { Routes, Route } from "react-router-dom";
 import path from "./untils/path";
 import { useEffect } from 'react';

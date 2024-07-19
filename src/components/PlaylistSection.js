@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
-import icons from '../untils/icons';
 import PlaylistItem from './PlaylistItem';
+import TitleSection from './TitleSection';
 
 const PlaylistSection = ({ item }) => {
     const [itemsToShow, setItemsToShow] = useState(5);
@@ -23,13 +23,8 @@ const PlaylistSection = ({ item }) => {
     }, []);
 
     return (
-        <div className='container px-14 mt-12'>
-            <h3 className='flex justify-between items-center mb-5'>
-                <span className='text-xl font-bold'>{item?.title}</span>
-                <span className='flex gap-1 items-center text-xs font-medium cursor-pointer text-main-700 hover:text-main-500'>
-                    TẤT CẢ {<icons.GoChevronRight size={20} />}
-                </span>
-            </h3>
+        <div className='container mt-12'>
+            <TitleSection title = {item?.title} />
             <div className='w-full my-5 flex flex-col'>
                 <div className='relative overflow-hidden font-bold'>
                     <div className='flex overflow-hidden'>
