@@ -7,17 +7,29 @@ import * as actions from '../store/actions';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-function SongReleaseItem({ item }) {
+function SongReleaseItem({ item, order, percent }) {
+    moment.locale('vi')
     const dispatch = useDispatch();
     const handleCLickSong = (sid) => {
         dispatch(actions.setCurSongId(sid));
         dispatch(actions.playAlbum(true));
         dispatch(actions.play(true));
     }
-
-    moment.locale('vi')
+    const textOrders = [
+        '#4a90e2', '#27bd9c', '#e35050'
+    ]
     return (
-        <div className='group flex gap-2 p-[10px] rounded hover:bg-main-200 hover:border-main-200 cursor-pointer'>
+        <div className={` ${order ? 'bg-[rgba(239,216,255,0.7)]' : 'hover:bg-main-200 hover:border-main-200'} group flex gap-2 p-[10px] rounded cursor-pointer items-center justify-between w-full`}>
+            <div className='flex gap-2 items-center'>
+            {order &&
+                <span
+                    style={{
+                        '-webkit-text-stroke': `1px ${textOrders[order - 1]}`
+                    }}
+                    className='text-4xl mx-2 text-transparent'>
+                    {order}
+                </span>
+            }
             <div className='relative rounded overflow-hidden w-[60px] h-[60px]'>
                 <img
                     src={item?.thumbnailM}
@@ -37,7 +49,7 @@ function SongReleaseItem({ item }) {
             <div className='flex flex-col mt-2'>
                 <span
                     onClick={() => { handleCLickSong(item.encodeId) }}
-                    className='text-sm text-[#32323d] font-medium'>
+                    className={`${order ? 'text-[#a995b7]' : 'text-main-600'} text-sm font-medium`}>
                     {item?.title.length >= 30 ? `${item?.title.trim().slice(0, 30)}...` : item?.title}
                 </span>
                 <div className='text-xs text-main-700 font-normal'>
@@ -48,15 +60,23 @@ function SongReleaseItem({ item }) {
                                 to={`/${artist.alias}`}
                                 className="cursor-pointer hover:text-main-500 hover:underline"
                             >
-                                {artist.name}
+                                {artist.name}{artist.spotlight && '★'}
                                 {index !== item.artists.length - 1 && ', '}
                             </NavLink>
                         ))}
                 </div>
-                <div className='text-xs text-main-700'>
-                    {moment.unix(item.releaseDate).fromNow()}
-                </div>
+                {!percent &&
+                    <div className='text-xs text-main-700'>
+                        {moment.unix(item.releaseDate).fromNow()}
+                    </div>
+                }
             </div>
+            </div>
+            {percent &&
+                <span className={`text-2xl font-bold text-[${textOrders[order-1]}]`}>
+                    {`${percent}%`}
+                </span>
+            }
         </div>
     );
 }

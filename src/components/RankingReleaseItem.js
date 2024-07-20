@@ -40,7 +40,7 @@ const RankingReleaseItem = ({ item, id }) => {
                                 to={`/${artist.alias}`}
                                 className="cursor-pointer hover:text-main-500 hover:underline"
                             >
-                                {artist.name}
+                                {artist.name}{artist.spotlight && '★'}
                                 {index !== item.artists.length - 1 && ', '}
                             </NavLink>
                         ))}
