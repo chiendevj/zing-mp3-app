@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Partner, PlaylistSection, RankingReleaseSection, ReleaseSection, Slider } from '../../components';
+import { ChartSection, Partner, PlaylistSection, RankingReleaseSection, ReleaseSection, Slider } from '../../components';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const {
     hEditorThemes, releaseList, rankingReleaseList,
-    zingchartBanners, top100, albumHot
+    zingchartBanners, top100, albumHot, chart, rank
   } = useSelector(state => state.app);
 
   const navigate = useNavigate()
@@ -37,6 +37,7 @@ function Home() {
       <RankingReleaseSection rankingReleaseList={rankingReleaseList} />
       {/* zingchart */}
 
+      <ChartSection chart={chart} rank={rank} />
       <div className="px-14 w-full flex">
         {zingchartBanners?.map((item) => (
           <div className="w-1/3 px-2" onClick={() => { handleClickBannerChart(item.link) }}>
@@ -53,7 +54,7 @@ function Home() {
       <div className='px-14'>
         <PlaylistSection item={top100} />
       </div>
-      
+
       {/* Album hot */}
       <div className='px-14'>
         <PlaylistSection item={albumHot} />

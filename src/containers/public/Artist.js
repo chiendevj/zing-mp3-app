@@ -3,14 +3,15 @@ import { useParams } from 'react-router-dom';
 import icons from '../../untils/icons';
 import numeral from 'numeral';
 import { Tooltip } from 'react-tooltip';
-import { PlaylistSection, SongItem, TitleSection } from '../../components';
+import { AboutArtist, PlaylistSection, SingerItem, SongItem, TitleSection } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions';
 
 function Artist() {
   const { name } = useParams();
   const dispatch = useDispatch();
-  const { artistBasicInfo, topSongs, aAlbums, aMV } = useSelector((state) => state.artist);
+  const { artistBasicInfo, topSongs, aAlbums, aMV, aPlaylists, aReArtist } = useSelector((state) => state.artist);
+  const [itemsToShow, setItemsToShow] = useState(5);
 
   useEffect(() => {
     dispatch(actions.getArtist(name));
@@ -22,7 +23,23 @@ function Artist() {
     }
   }, [artistBasicInfo]);
 
-  console.log(aMV);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1300) {
+        setItemsToShow(4);
+      } else {
+        setItemsToShow(5);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className='px-14'>
@@ -48,6 +65,13 @@ function Artist() {
             </div>
           </div>
         </div>
+        {/* Spotlight */}
+        {artistBasicInfo?.spotlight && (
+          <span className='mr-10'>
+            <icons.Spotlight />
+          </span>
+        )}
+        {/* Awards */}
         {artistBasicInfo?.awards && (
           <span className='mr-5 cursor-pointer' data-tooltip-id="award">
             <icons.Award />
@@ -121,34 +145,58 @@ function Artist() {
       )}
 
       {/* MV */}
-      
-        <div className='container my-10'>
-          <TitleSection title="MV" />
-          <div className='grid grid-cols-3 gap-4'>
-            {aMV?.items.slice(0, 3).map((item, index) => (
-              <div key={index} className='flex flex-col'>
-                <div className="relative rounded-lg overflow-hidden group">
-                  <img
-                    src={item.thumbnailM}
-                    alt={item.title}
-                    title={item.title}
-                    className="w-full h-auto transform transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
-                    <button className="absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300">
-                      <icons.MdPlayArrow size={35} />
-                    </button>
-                  </div>
-                </div>
-                <div className='mt-2'>
-                  <span className='text-sm font-bold text-main-600'>{item.title}</span>
-                  <span className='text-xs font-normal text-main-700'>{item.artistsNames}</span>
+      <div className='container my-10'>
+        <TitleSection title="MV" />
+        <div className='grid grid-cols-3 gap-4'>
+          {aMV?.items?.slice(0, 3).map((item, index) => (
+            <div key={index} className='flex flex-col'>
+              <div className="relative rounded-lg overflow-hidden group">
+                <img
+                  src={item.thumbnailM}
+                  alt={item.title}
+                  title={item.title}
+                  className="w-full h-auto transform transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
+                  <button className="absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300">
+                    <icons.MdPlayArrow size={35} />
+                  </button>
                 </div>
               </div>
-            ))}
+              <div className='mt-2'>
+                <span className='text-sm font-bold text-main-600'>{item.title}</span>
+                <span className='text-xs font-normal text-main-700'>{item.artistsNames}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/*  */}
+      {/* Playlist */}
+      {aPlaylists.map((aPlaylist) => (
+        aPlaylist?.items?.length > 0 && (
+          <PlaylistSection item={aPlaylist} key={aPlaylist.sectionId} />
+        )
+      ))}
+
+      {/* aReArtist */}
+      <div className="w-full my-5 flex flex-col">
+        <h3 className="text-xl text-main-600 font-bold mb-5">
+          {aReArtist?.title}
+        </h3>
+        <div className="relative overflow-hidden font-bold">
+          <div className="flex overflow-hidden">
+            {aReArtist?.items?.slice(0, itemsToShow)
+              .map((artist) => (
+                <SingerItem artist={artist} />
+              ))}
           </div>
         </div>
-      
+      </div>
+
+      {/* About Artist */}
+      <AboutArtist artistBasicInfo={artistBasicInfo} />
+
     </div>
   );
 }

@@ -24,8 +24,8 @@ const ReleaseSection = ({ releaseList }) => {
                 onSelectCategory={handleSelectCategory}
             />
             <div className='grid 1300:grid-cols-3 grid-cols-2'>
-                {releaseList?.items[selectedCategory].slice(0,12).map((item, index) => (
-                    <SongReleaseItem item = {item} key={index}/>
+                {releaseList?.items[selectedCategory].slice(0,12).map((item) => (
+                    <SongReleaseItem item = {item} key={item.encodeId}/>
                 ))}
             </div>
         </div>

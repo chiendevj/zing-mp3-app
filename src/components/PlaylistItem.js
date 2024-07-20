@@ -1,21 +1,11 @@
 import React, { memo } from 'react';
 import icons from '../untils/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
-
+import {truncateDescription} from '../untils/app'
 function PlaylistItem({ item }) {
     const navigate = useNavigate();
 
-    const truncateDescription = (description, maxLength) => {
-        if (description.length <= maxLength) return description;
-        const words = description.split(' ');
-        let truncated = words[0];
-        for (let i = 1; i < words.length; i++) {
-            if ((truncated + ' ' + words[i]).length > maxLength) break;
-            truncated += ' ' + words[i];
-        }
-        return truncated + '...';
-    };
-
+    
     const handleClickPlaylistItem = (item) => {
         const albumPath = item?.link.split('.')[0];
         navigate(albumPath);

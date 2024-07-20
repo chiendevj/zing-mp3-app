@@ -13,8 +13,7 @@ function SingerItem({ artist }) {
                     key={artist.id}
                     to={`/${artist.alias}`}
                     className='text-sm text-main-600 font-medium mt-5 cursor-pointer hover:text-main-500 hover:underline'>
-
-                    {artist.name}
+                    {artist.name}{artist.spotlight && '★'}
                 </NavLink>
 
                 <span className='text-xs text-main-700 font-normal mt-1'>{numeral(artist?.totalFollow).format('0a').toUpperCase()} quan tâm</span>
