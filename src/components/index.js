@@ -18,6 +18,8 @@ export {default as Partner} from './Partner'
 export {default as TitleSection} from './TitleSection'  
 export {default as AboutArtist} from './AboutArtist'  
 export {default as ChartSection} from './ChartSection'  
+export {default as ChartBanner} from './ChartBanner'  
+
 
 
 
