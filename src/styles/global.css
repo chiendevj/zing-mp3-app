@@ -5,6 +5,6 @@
   }
 
   .text-stroke {
-    -webkit-text-stroke: 1px #6b3483; /* Adjust the color and width of the stroke */
+    -webkit-text-stroke: 1px #6b3483;
     font-family: "Roboto", sans-serif;
   }
