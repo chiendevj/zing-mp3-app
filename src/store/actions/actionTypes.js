@@ -8,8 +8,10 @@ const actionTypes = {
     PLAYLIST: 'PLAYLIST',
 
     // ARTIST
-    GET_ARTIST: 'GET_ARTIST'
+    GET_ARTIST: 'GET_ARTIST',
 
+    // Zingchart
+    ZING_CHART: 'ZING_CHART',
 
 }
 
