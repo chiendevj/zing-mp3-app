@@ -8,29 +8,37 @@ import * as actions from '../store/actions';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-function SongReleaseItem({ item, order, percent, color }) {
+function SongReleaseItem({ item, order, percent, indexBgColor }) {
 
-    moment.locale('vi')
+    moment.locale('vi');
     const dispatch = useDispatch();
     const handleCLickSong = (sid) => {
         dispatch(actions.setCurSongId(sid));
         dispatch(actions.playAlbum(true));
         dispatch(actions.play(true));
-    }
+    };
 
-    const textOrders = [
-        '#4a90e2', '#27bd9c', '#e35050'
-    ]
+    const textOrders = ['#4a90e2', '#27bd9c', '#e35050'];
 
-    const backgroundColor = clsx({
-        [`bg-[${color}]`]: color  && !order && percent,
-        'bg-[rgba(239,216,255,0.4)] hover:bg-[rgba(239,216,255,0.5)]': !color && order && percent,
-        'hover:bg-main-200 bg-main-300 hover:border-main-200': !order && !color && !percent,
+    const backgroundColorStyle = indexBgColor >= 0 && !order && percent
+        ? { backgroundColor: textOrders[indexBgColor] }
+        : {};
+
+    const backgroundColorClass = clsx({
+        'bg-[rgba(239,216,255,0.4)] hover:bg-[rgba(239,216,255,0.5)]': !indexBgColor && order && percent,
+        'hover:bg-main-200 bg-main-300 hover:border-main-200': !order && !indexBgColor && !percent,
     });
 
-    console.log(backgroundColor);
+    const textColorClass = indexBgColor >= 0 ? 'text-white' : '';
+
     return (
-        <div className={`group flex gap-2 p-[10px] rounded cursor-pointer items-center justify-between w-full ${backgroundColor}`}>
+        <div
+            className={clsx(
+                'group flex gap-2 p-[10px] rounded cursor-pointer items-center justify-between w-full',
+                backgroundColorClass
+            )}
+            style={backgroundColorStyle}
+        >
             <div className='flex gap-2 items-center'>
                 {order &&
                     <span
@@ -60,10 +68,10 @@ function SongReleaseItem({ item, order, percent, color }) {
                 <div className='flex flex-col mt-2 leading-none'>
                     <span
                         onClick={() => { handleCLickSong(item.encodeId) }}
-                        className={`${order ? 'text-[#ffffff80]' : 'text-main-600'} text-sm font-medium`}>
+                        className={`${order ? 'text-[#ffffff80]' : 'text-main-600'} ${textColorClass} text-sm font-medium`}>
                         {item?.title?.length >= 30 ? `${item?.title.trim().slice(0, 30)}...` : item?.title}
                     </span>
-                    <div className={`text-xs ${order ? 'text-[#ffffff80]' : 'text-main-700'} font-normal`}>
+                    <div className={`text-xs ${order ? 'text-[#ffffff80]' : 'text-main-700'} ${textColorClass} font-normal`}>
                         {item?.artists &&
                             item.artists.map((artist, index) => (
                                 <NavLink
@@ -78,7 +86,7 @@ function SongReleaseItem({ item, order, percent, color }) {
                     </div>
                     {!percent
                         ?
-                        <div className='text-xs text-main-700'>
+                        <div className={`text-xs ${textColorClass} text-main-700`}>
                             {moment.unix(item?.releaseDate).fromNow()}
                         </div>
                         : ''
@@ -88,7 +96,7 @@ function SongReleaseItem({ item, order, percent, color }) {
             {percent &&
                 <span
                     style={{ color: textOrders[order - 1] }}
-                    className={`${order ? 'text-2xl' : 'text-lg text-main-500'} font-bold`}
+                    className={`${order ? 'text-2xl' : 'text-lg text-white'} font-bold`}
                 >
                     {`${percent}%`}
                 </span>

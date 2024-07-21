@@ -18,8 +18,6 @@ const ChartSection = ({ chart, rank }) => {
         top: 0,
         left: 0,
     })
-
-    const colors = ['#4a90e2', '#27bd9c', '#e35050']; 
     
     const options = {
         responsive: true,
@@ -118,7 +116,7 @@ const ChartSection = ({ chart, rank }) => {
         }
     }, [selected, rank, selectedItem]);
 
-
+console.log();
     return (
         <div className="px-14 my-12 relative">
             <img
@@ -161,7 +159,7 @@ const ChartSection = ({ chart, rank }) => {
                                     <SongReleaseItem
                                         item={selectedItem}
                                         percent={Math.round((selectedItem?.score * 100) / chart.totalScore)}
-                                        color={colors[rank.find(item => item.encodeId === selected)]}
+                                        indexBgColor={rank.findIndex(item => item.encodeId === selected)}
                                     />
                                 </div>
                             </div>
