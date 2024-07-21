@@ -49,6 +49,15 @@ module.exports = {
         '5': '5 5 0%',
         '6': '6 6 0%',
         '7': '7 7 0%',
+      },
+      backgroundImage: {
+        'gradient-text': 'radial-gradient(50% 124.93% at 95.86% -10%, #3efad9 0, hsla(0, 0%, 100%, 0) 100%), linear-gradient(91.56deg, #ff9357 1.54%, #00ff11 98.71%)',
+      },
+      backgroundClip: {
+        'text': 'text',
+      },
+      webkitBackgroundClip: {
+        'text': 'text',
       }
     },
     screens: {
