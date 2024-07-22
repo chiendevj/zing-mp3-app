@@ -14,7 +14,10 @@ const actionTypes = {
     GET_ZING_CHART: 'GET_ZING_CHART',
 
     // Hubhome
-    GET_HUB_HOME: 'GET_HUB_HOME'
+    GET_HUB_HOME: 'GET_HUB_HOME',
+
+    // NewRelease
+    GET_NEW_RELASE: 'GET_NEW_RELASE',
 
 }
 

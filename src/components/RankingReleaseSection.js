@@ -4,7 +4,11 @@ import RankingReleaseItem from './RankingReleaseItem';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TitleSection from './TitleSection';
+import { useNavigate } from 'react-router-dom';
+import path from '../untils/path';
 const RankingReleaseSection = ({ rankingReleaseList }) => {
+
+  const navigate = useNavigate()
   const settings = {
     infinite: true,
     speed: 250,
@@ -26,7 +30,7 @@ const RankingReleaseSection = ({ rankingReleaseList }) => {
 
   return (
     <div className='container px-14 my-12 overflow-hidden'>
-      <TitleSection title = {rankingReleaseList?.title} />
+      <TitleSection title={rankingReleaseList?.title} />
       <div>
         <Slider {...settings}>
           {rankingReleaseList?.items?.map((item, index) => (
@@ -37,7 +41,11 @@ const RankingReleaseSection = ({ rankingReleaseList }) => {
             </div>
           ))}
           <div className='p-4'>
-            <div className='bg-main-200 rounded-md p-[10px] flex w-full items-center justify-center h-[140px] group cursor-pointer'>
+            <div
+              onClick={() => {
+                navigate(path.RELEASE_NEW)
+              }}
+              className='bg-main-200 rounded-md p-[10px] flex w-full items-center justify-center h-[140px] group cursor-pointer'>
               <span className='text-main-500 text-lg font-bold transform transition-transform duration-500 group-hover:scale-110' >XEM TẤT CẢ</span>
             </div>
           </div>

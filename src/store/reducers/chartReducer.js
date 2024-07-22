@@ -5,7 +5,7 @@ const initState = {
     chart: null,
     promotes: null,
     weekCharts: null,
-
+    newReleaseChart: null,
 };
 
 const chartReducer = (state = initState, action) => {
@@ -21,9 +21,13 @@ const chartReducer = (state = initState, action) => {
                     action.homeChartData?.weekChart.us || {},
                     action.homeChartData?.weekChart.korea || {},
                 ],
-                
             };
-
+            case actionTypes.GET_NEW_RELASE:
+                return {
+                    ...state,
+                    newReleaseChart: action.newReleaseChartData,
+                };
+    
         default:
             return state;
     }

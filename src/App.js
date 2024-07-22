@@ -18,6 +18,7 @@ function App() {
     dispatch(actions.getHome())
     dispatch(actions.getHomeChart())
     dispatch(actions.getHubHome())
+    dispatch(actions.getNewReleaseChart())
     
   }, [])
 
