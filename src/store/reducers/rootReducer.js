@@ -1,10 +1,12 @@
 import storage from "redux-persist/lib/storage";
-import appReducer from "./appReducer";
 import { combineReducers } from "redux";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-import musicReducer from "./musicReducer";
 import { persistReducer } from "redux-persist";
+import appReducer  from "./appReducer";
+import musicReducer from "./musicReducer";
 import artistReducer from "./artistReducer";
+import chartReducer from './chartReducer'
+import hubhomeReducer from "./hubhomeReducer";
 
 const commonConfig = {
     storage: storage,
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
     app: appReducer,
     music: persistReducer(musicConfig, musicReducer),
     artist: artistReducer,
+    chart: chartReducer,
+    hubhome: hubhomeReducer
 })
 
 export default rootReducer

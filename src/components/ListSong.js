@@ -11,8 +11,8 @@ function ListSong() {
     <div className='flex flex-col w-full mt-1'>
       {/* Header */}
       <div className='flex w-full text-xs text-main-700 font-semibold items-center gap-1 p-[10px] border-b-[1px] border-[#c4cece]'>
-        <div className='w-1/2 flex-none text-start'>BÀI HÁT</div>
-        <div className='w-1/3 flex-none text-start'>ALBUM</div>
+        <div className='w-full flex-auto text-start'>BÀI HÁT</div>
+        <div className='w-1/3 text-start'>ALBUM</div>
         <div className='flex-auto text-end'>THỜI GIAN</div>
       </div>
       {/* Body */}
