@@ -23,3 +23,25 @@ export const getHomeChart = () => async (dispatch) => {
         });
     }
 };
+
+export const getNewReleaseChart = () => async (dispatch) => {
+    try {
+        const response = await apis.apiGetNewReleaseChart();
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.GET_NEW_RELASE,
+                newReleaseChartData: response.data.data
+            });
+        } else {
+            dispatch({
+                type: actionTypes.GET_NEW_RELASE,
+                newReleaseChartData: null
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_NEW_RELASE,
+            newReleaseChartData: null
+        });
+    }
+};
