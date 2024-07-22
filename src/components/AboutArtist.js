@@ -9,7 +9,7 @@ import { Tooltip } from 'react-tooltip';
 function AboutArtist({ artistBasicInfo }) {
     // Get the country code from the national name
     const countryCode = getCountryCodeFromName(artistBasicInfo?.national);
-    console.log(countryCode);
+   
     return (
         <div className='container flex w-full flex-col my-12'>
             <h3 className='text-xl font-bold mb-5'>

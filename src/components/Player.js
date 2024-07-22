@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as apis from '../apis'
 import * as actions from '../store/actions'
@@ -233,4 +233,4 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     )
 }
 
-export default Player
+export default memo(Player)

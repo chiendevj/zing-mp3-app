@@ -1,9 +1,9 @@
 import axios from "../axios";
 
-export const apiGetHomeChart = () => new Promise( async (resolve, reject) => {
+export const apiGetHubHome = () => new Promise( async (resolve, reject) => {
     try {
         const response = await axios({
-            url: '/homechart',
+            url: '/hub-home',
             method: 'GET',
         })
         resolve(response)

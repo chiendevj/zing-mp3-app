@@ -11,7 +11,10 @@ const actionTypes = {
     GET_ARTIST: 'GET_ARTIST',
 
     // Zingchart
-    ZING_CHART: 'ZING_CHART',
+    GET_ZING_CHART: 'GET_ZING_CHART',
+
+    // Hubhome
+    GET_HUB_HOME: 'GET_HUB_HOME'
 
 }
 

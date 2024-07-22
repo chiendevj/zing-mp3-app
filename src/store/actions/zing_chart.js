@@ -4,22 +4,21 @@ import * as apis from '../../apis';
 export const getHomeChart = () => async (dispatch) => {
     try {
         const response = await apis.apiGetHomeChart();
- 
-        if (response?.err === 0) {
+        
+        if (response?.data.err === 0) {
             dispatch({
-                type: actionTypes.ZING_CHART,
-                homeChartData: response.data
+                type: actionTypes.GET_ZING_CHART,
+                homeChartData: response.data.data
             });
-       
         } else {
             dispatch({
-                type: actionTypes.ZING_CHART,
+                type: actionTypes.GET_ZING_CHART,
                 homeChartData: null
             });
         }
     } catch (error) {
         dispatch({
-            type: actionTypes.ZING_CHART,
+            type: actionTypes.GET_ZING_CHART,
             homeChartData: null
         });
     }

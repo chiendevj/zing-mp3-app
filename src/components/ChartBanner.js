@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {SongReleaseItem} from './index';
 
 
-const ChartBanner = ({rank, chart}) => {
+const ChartBanner = ({rank, chart, main}) => {
     const [data, setData] = useState(null);
     const [selected, setSelected] = useState(null);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -24,12 +24,12 @@ const ChartBanner = ({rank, chart}) => {
         scales: {
             x: {
                 ticks: {
-                    color: 'rgba(245, 246, 250,0.7)',
+                    color: main ? '#a8aaaa' : 'rgba(245, 246, 250, 0.7)',
                     callback: function (value, index, values) {
                         return index % 2 === 0 ? this.getLabelForValue(value) : '';
                     },
                     font: {
-                        size: 8.5,
+                        size: main ? 12 : 8.5,
                     },
                 },
                 grid: {
@@ -41,10 +41,10 @@ const ChartBanner = ({rank, chart}) => {
                     display: false,
                 },
                 grid: {
-                    color: 'rgba(245, 246, 250,0.3)',
+                    color: main ? '#a8aaaa' : 'rgba(245, 246, 250,0.3)',
                 },
                 min: 0,
-                max: 80,
+                max: 70,
                 border: { dash: [2, 4] },
             },
         },

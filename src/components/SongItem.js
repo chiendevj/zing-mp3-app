@@ -5,7 +5,7 @@ import * as actions from '../store/actions'
 import { useDispatch } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 
-function SongItem({ item }) {
+function SongItem({ item, display, index, hiddenAlbum }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -19,12 +19,27 @@ function SongItem({ item }) {
         // dispatch(actions.playAlbum(true))
         dispatch(actions.play(true))
     }
+    const textOrders = ['#4a90e2', '#27bd9c', '#e35050'];
 
     return (
-        <>
-            <div className='group flex w-full gap-1 text-xs text-main-700 font-semibold items-center p-[10px] border-b border-[#c4cece] rounded hover:bg-main-200 hover:border-main-200 cursor-pointer'>
-                <div className='w-1/2 flex-none text-start flex items-center gap-3'>
-                    <span>{<icons.PiMusicNotes size={14} />}</span>
+        <div className='group flex w-full gap-1 text-xs text-main-700 font-semibold justify-between items-center p-[10px] border-b border-[#c4cece] rounded hover:bg-main-200 hover:border-main-200 cursor-pointer'>
+            <div className='flex w-full'>
+                <div className={`w-full flex-auto text-start flex items-center gap-3`}>
+                    {display ? (
+                        <div className='flex items-center justify-center w-10 h-10 px-8'>
+                            <span className='text-sm  font-normal px-8 text-nowrap'>Gợi ý</span>
+                        </div>
+                    ) : index ? (
+                        <div className={`flex items-center justify-center w-10 h-10 ${hiddenAlbum ? 'px-2' : 'px-8'}`}>
+                            <span
+                                style={{
+                                    '-webkit-text-stroke': `1px ${index === 1 ? textOrders[0] : index === 2 ? textOrders[1] : index === 3 ? textOrders[2] : '#32323d'}`
+                                }}
+                                className='text-3xl text-transparent text-center font-normal'>{index}</span>
+                        </div>
+                    ) : (
+                        <span>{<icons.PiMusicNotes size={14} />}</span>
+                    )}
                     <div className='relative rounded overflow-hidden w-10 h-10'>
                         <img
                             src={item?.thumbnailM}
@@ -42,31 +57,47 @@ function SongItem({ item }) {
                         </div>
                     </div>
                     <div className='flex flex-col'>
-                        <span onClick={() => { handleCLickSong(item.encodeId) }} className='text-sm text-[#32323d] font-medium'>{item?.title.length >= 30 ? `${item?.title.trim().slice(0, 30)}...` : item?.title} <span>{item?.err}</span> </span>
+                        <span onClick={() => { handleCLickSong(item.encodeId) }} className='w-full text-sm text-[#32323d] font-medium'>{item?.title.length >= 20 ? `${item?.title.trim().slice(0, 20)}...` : item?.title} <span>{item?.err}</span> </span>
                         <div className='text-xs text-main-700 font-normal'>
-                            {item?.artists &&
-                                item.artists.map((artist, index) => (
-                                    <NavLink
-                                        key={artist.id}
-                                        to={`/${artist.alias}`}
-                                        className="cursor-pointer hover:text-main-500 hover:underline"
-                                    >
-                                        {artist.name}{artist.spotlight && '★'}
-                                        {index !== item.artists.length - 1 && ', '}
-                                    </NavLink>
-
-                                ))}
+                            {item?.artists && hiddenAlbum ? (
+                                <>
+                                    {item.artists.slice(0, 1).map((artist, index) => (
+                                        <NavLink
+                                            key={artist.id}
+                                            to={`/${artist.alias}`}
+                                            className="cursor-pointer hover:text-main-500 hover:underline"
+                                        >
+                                            {artist.name}{artist.spotlight && '★'}
+                                        </NavLink>
+                                    ))}
+                                    {item.artists.length > 1 && '...'}
+                                </>
+                            )
+                        :
+                        (item.artists.map((artist, index) => (
+                            <NavLink
+                                key={artist.id}
+                                to={`/${artist.alias}`}
+                                className="cursor-pointer hover:text-main-500 hover:underline"
+                            >
+                                {artist.name}{artist.spotlight && '★'}
+                                {index < item.artists.length - 1 && ', '}
+                            </NavLink>
+                        )))
+                        }
                         </div>
                     </div>
                 </div>
-                <div className='w-1/3 flex-none text-start'>
-                    <span className='text-main-700 font-normal hover:underline hover:text-main-500' onClick={() => handleClickAlbum(item?.album)}>
-                        {item?.album?.title || 'UnKnown'}
-                    </span>
-                </div>
-                <div className='flex-auto text-end text-main-700 font-normal '>{moment.duration(item?.duration, 'seconds').format('hh:mm:ss')}</div>
+                {!hiddenAlbum &&
+                    <div className='w-1/3 flex-none text-start flex items-center'>
+                        <span className='text-main-700 font-normal hover:underline hover:text-main-500' onClick={() => handleClickAlbum(item?.album)}>
+                            {item?.album?.title || 'UnKnown'}
+                        </span>
+                    </div>
+                }
             </div>
-        </>
+            <div className='text-end text-main-700 font-normal '>{moment.duration(item?.duration, 'seconds').format('hh:mm:ss')}</div>
+        </div>
     )
 }
 

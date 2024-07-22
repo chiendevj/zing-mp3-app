@@ -16,6 +16,7 @@ export const getHome = () => async (dispatch) => {
             });
         }
     } catch (error) {
+        console.error('Action Creator Error:', error);
         dispatch({
             type: actionTypes.GET_HOME,
             homeData: null

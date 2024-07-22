@@ -91,8 +91,8 @@ function Artist() {
               <h3 className='flex justify-between items-center mb-5'>
                 <span className='text-xl font-bold'>Mới phát hành</span>
               </h3>
-              <div className='w-full h-full rounded-md bg-main-600 p-4 flex'>
-                <div className="relative rounded-lg overflow-hidden group w-1/2 h-auto">
+              <div className='w-full h-full rounded-md bg-main-600 p-4 flex items-center'>
+                <div className="relative rounded-lg overflow-hidden group w-1/2 h-fit">
                   <img
                     src={artistBasicInfo.aNewRelease?.thumbnailM}
                     alt={artistBasicInfo.aNewRelease?.title}
@@ -116,20 +116,20 @@ function Artist() {
               </div>
             </div>
             <div className='w-2/3'>
-              <TitleSection title={topSongs?.title} />
-              <div className='grid grid-cols-1'>
-                {topSongs?.items?.slice(0, 3).map((item, index) => (
-                  <SongItem item={item} key={index} />
-                ))}
-              </div>
+            <TitleSection title={topSongs?.title} />
+            <div className='grid grid-cols-2 gap-3'>
+              {topSongs?.items?.slice(0, 6).map((item, index) => (
+                <SongItem item={item} key={index} hiddenAlbum={true} />
+              ))}
             </div>
+          </div>
           </>
         ) :
           <div className='w-full'>
             <TitleSection title={topSongs?.title} />
-            <div className='grid grid-cols-2 gap-4'>
+            <div className='grid grid-cols-2 gap-3'>
               {topSongs?.items?.slice(0, 6).map((item, index) => (
-                <SongItem item={item} key={index} />
+                <SongItem item={item} key={index} hiddenAlbum={true} />
               ))}
             </div>
           </div>

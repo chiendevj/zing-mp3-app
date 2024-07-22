@@ -16,6 +16,9 @@ function App() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(actions.getHome())
+    dispatch(actions.getHomeChart())
+    dispatch(actions.getHubHome())
+    
   }, [])
 
   return (
