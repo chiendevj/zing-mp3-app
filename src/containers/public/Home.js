@@ -23,8 +23,10 @@ function Home() {
     <div className='overflow-y-auto'>
       {/* Slider */}
       <Slider />
+
       {/* Danh sách mới phát hành */}
       <ReleaseSection releaseList={releaseList} />
+
       {/* Playlist */}
       {hEditorThemes.map((hEditorTheme) => (
         hEditorTheme?.items?.length > 0 && (
@@ -33,10 +35,11 @@ function Home() {
           </div>
         )
       ))}
+
       {/* BXH mới */}
       <RankingReleaseSection rankingReleaseList={rankingReleaseList} />
-      {/* zingchart */}
 
+      {/* zingchart */}
       <ChartSection chart={chart} rank={rank} />
       <div className="px-14 w-full flex">
         {zingchartBanners?.map((item) => (
@@ -59,8 +62,6 @@ function Home() {
       <div className='px-14'>
         <PlaylistSection item={albumHot} />
       </div>
-
-      {/* Radio */}
 
       {/* Đối tác */}
       <Partner />

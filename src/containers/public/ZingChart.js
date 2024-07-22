@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ChartBanner, SongItem, WeekChartItem } from '../../components'; // Adjust the import path as needed
+import { ChartBanner, SongItem, WeekChartItem } from '../../components';
 
 const ZingChart = () => {
   const { chart, rank, promotes, weekCharts } = useSelector((state) => state.chart);
@@ -50,12 +50,12 @@ const ZingChart = () => {
           ))
         ))}
         <div className='flex justify-center my-3'>
-        <button
-          onClick={handleShowAllClick}
-          className='font-medium px-5 py-2 border-2 border-main-500 hover:bg-[rgba(14,128,128,0.1)] rounded-full text-sm text-main-500'
-        >
-          {showAll ? 'Xem top 10' : 'Xem top 100'}
-        </button>
+          <button
+            onClick={handleShowAllClick}
+            className='font-medium px-5 py-2 border-2 border-main-500 hover:bg-[rgba(14,128,128,0.1)] rounded-full text-sm text-main-500'
+          >
+            {showAll ? 'Xem top 10' : 'Xem top 100'}
+          </button>
         </div>
       </div>
       <div className='my-8'>
@@ -63,8 +63,8 @@ const ZingChart = () => {
           Bảng Xếp Hạng Tuần
         </h1>
         <div className='w-full flex flex-col 1300:flex-row -mx-[15px]'>
-          { weekCharts && weekCharts.map(item => (
-              <WeekChartItem item={item}/>
+          {weekCharts && weekCharts.map(item => (
+            <WeekChartItem item={item} />
           ))}
         </div>
       </div>
