@@ -28,7 +28,7 @@ const PlaylistSection = ({ item, top100 }) => {
     return (
         <div className='container mt-12'>
             {item?.title && (
-                <TitleSection title={item?.title} top100={true} />
+                <TitleSection title={item?.title} top100={top100} />
             )}
             <div className='w-full my-5 flex flex-wrap'>
                 {item?.items?.slice(0, itemsToShow).map((item) => (

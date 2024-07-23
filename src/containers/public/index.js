@@ -9,6 +9,7 @@ export {default as ReleaseNew} from './ReleaseNew'
 export {default as Top100} from './Top100'
 export {default as WeekChart} from './WeekChart'
 export {default as Artist} from './Artist'
+export {default as Splash} from './Splash'
 
 
 
