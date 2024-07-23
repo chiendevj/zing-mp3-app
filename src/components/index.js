@@ -20,6 +20,8 @@ export {default as AboutArtist} from './AboutArtist'
 export {default as ChartSection} from './ChartSection'  
 export {default as ChartBanner} from './ChartBanner'  
 export {default as WeekChartItem} from './WeekChartItem'  
+export {default as ModalVideo} from './ModalVideo'  
+export {default as VideoSection} from './VideoSection'  
 
 
 

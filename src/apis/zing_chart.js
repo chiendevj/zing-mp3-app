@@ -18,7 +18,6 @@ export const apiGetNewReleaseChart = () => new Promise( async (resolve, reject) 
             url: '/newreleasechart',
             method: 'GET',
         })
-        console.log(response);
         resolve(response)
     } catch (error) {
         reject(error)

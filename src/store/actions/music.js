@@ -22,24 +22,3 @@ export const setPlaylist = (songs) => ({
 })
 
 
-// export const fetchDetailAlbum = (pid) => async (dispatch) => {
-//     try {
-//         const response = await apis.apiGetDetailPlaylist(pid);
-//         if (response?.data.err === 0) {
-//             dispatch({
-//                 type: actionTypes.PLAYLIST,
-//                 songsData: response.data.data
-//             });
-//         } else {
-//             dispatch({
-//                 type: actionTypes.PLAYLIST,
-//                 songsData: null
-//             });
-//         }
-//     } catch (error) {
-//         dispatch({
-//             type: actionTypes.PLAYLIST,
-//             songsData: null
-//         });
-//     }
-// };

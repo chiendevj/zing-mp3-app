@@ -19,6 +19,9 @@ const actionTypes = {
     // NewRelease
     GET_NEW_RELASE: 'GET_NEW_RELASE',
 
+    // Top100
+    GET_TOP100: 'GET_TOP100',
+
 }
 
 export default actionTypes

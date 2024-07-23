@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import icons from '../../untils/icons';
 import numeral from 'numeral';
 import { Tooltip } from 'react-tooltip';
-import { AboutArtist, PlaylistSection, SingerItem, SongItem, TitleSection } from '../../components';
+import { 
+        AboutArtist, PlaylistSection, 
+        SingerItem, SongItem, TitleSection, VideoSection 
+      } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions';
 
 function Artist() {
   const { name } = useParams();
   const dispatch = useDispatch();
-  const { artistBasicInfo, topSongs, aAlbums, aMV, aPlaylists, aReArtist } = useSelector((state) => state.artist);
+  const { 
+    artistBasicInfo, topSongs, aAlbums, 
+    aMV, aPlaylists, aReArtist } = useSelector((state) => state.artist);
+
   const [itemsToShow, setItemsToShow] = useState(5);
 
   useEffect(() => {
@@ -43,6 +49,8 @@ function Artist() {
 
   return (
     <div className='px-14'>
+
+      {/* Basic Info */}
       <div className='pt-[70px] mb-5 flex w-full justify-between items-end'>
         <div className='flex w-full'>
           <figure className='overflow-hidden rounded-full w-[140px] h-[140px] mr-10'>
@@ -83,6 +91,7 @@ function Artist() {
           </span>
         )}
       </div>
+
       {/* Top Songs */}
       <div className='container my-10 flex'>
         {artistBasicInfo.aNewRelease?.length !== 0 ? (
@@ -109,20 +118,31 @@ function Artist() {
                   <span className='text-xs font-normal text-main-700'>{artistBasicInfo.aNewRelease?.textType}</span>
                   <div className='flex flex-col gap-1 my-3'>
                     <span className='text-sm font-bold text-main-600'>{artistBasicInfo.aNewRelease?.title}</span>
-                    <span className='text-xs font-normal text-main-700'>{artistBasicInfo.aNewRelease?.artistsNames}</span>
+                    <span className='text-xs font-normal text-main-700'>
+                    {artistBasicInfo.aNewRelease?.artists?.map((artist, index) => (
+                      <NavLink
+                        key={artist.id}
+                        to={`/${artist.alias}`}
+                        className="cursor-pointer hover:text-main-500 hover:underline"
+                      >
+                        {artist.name}{artist.spotlight && '★'}
+                        {index < artistBasicInfo.aNewRelease?.artists?.length - 1 && ', '}
+                      </NavLink>
+                    ))}
+                  </span>
                   </div>
                   <span className='font-normal text-xs text-main-700 '>{artistBasicInfo.aNewRelease?.releaseDate}</span>
                 </div>
               </div>
             </div>
             <div className='w-2/3'>
-            <TitleSection title={topSongs?.title} />
-            <div className='grid grid-cols-2 gap-3'>
-              {topSongs?.items?.slice(0, 6).map((item, index) => (
-                <SongItem item={item} key={index} hiddenAlbum={true} />
-              ))}
+              <TitleSection title={topSongs?.title} />
+              <div className='grid grid-cols-2 gap-3'>
+                {topSongs?.items?.slice(0, 6).map((item, index) => (
+                  <SongItem item={item} key={index} hiddenAlbum={true} />
+                ))}
+              </div>
             </div>
-          </div>
           </>
         ) :
           <div className='w-full'>
@@ -135,43 +155,19 @@ function Artist() {
           </div>
         }
       </div>
+
       {/* Playlist && Album */}
       {aAlbums?.length > 0 && (
         <div className='container my-10'>
           {aAlbums.map((item) => (
-            <PlaylistSection item={item} key={item.sectionId} />
+            <PlaylistSection item={item} key={item.sectionId} top100={false} />
           ))}
         </div>
       )}
 
       {/* MV */}
-      <div className='container my-10'>
-        <TitleSection title="MV" />
-        <div className='grid grid-cols-3 gap-4'>
-          {aMV?.items?.slice(0, 3).map((item, index) => (
-            <div key={index} className='flex flex-col'>
-              <div className="relative rounded-lg overflow-hidden group">
-                <img
-                  src={item.thumbnailM}
-                  alt={item.title}
-                  title={item.title}
-                  className="w-full h-auto transform transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
-                  <button className="absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300">
-                    <icons.MdPlayArrow size={35} />
-                  </button>
-                </div>
-              </div>
-              <div className='mt-2'>
-                <span className='text-sm font-bold text-main-600'>{item.title}</span>
-                <span className='text-xs font-normal text-main-700'>{item.artistsNames}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      {/*  */}
+      <VideoSection videos={aMV?.items} artistThumbnail={artistBasicInfo.thumbnailM} />
+  
       {/* Playlist */}
       {aPlaylists.map((aPlaylist) => (
         aPlaylist?.items?.length > 0 && (
