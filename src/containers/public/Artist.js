@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import icons from '../../untils/icons';
 import numeral from 'numeral';
 import { Tooltip } from 'react-tooltip';
@@ -109,20 +109,31 @@ function Artist() {
                   <span className='text-xs font-normal text-main-700'>{artistBasicInfo.aNewRelease?.textType}</span>
                   <div className='flex flex-col gap-1 my-3'>
                     <span className='text-sm font-bold text-main-600'>{artistBasicInfo.aNewRelease?.title}</span>
-                    <span className='text-xs font-normal text-main-700'>{artistBasicInfo.aNewRelease?.artistsNames}</span>
+                    <span className='text-xs font-normal text-main-700'>
+                    {artistBasicInfo.aNewRelease?.artists?.map((artist, index) => (
+                      <NavLink
+                        key={artist.id}
+                        to={`/${artist.alias}`}
+                        className="cursor-pointer hover:text-main-500 hover:underline"
+                      >
+                        {artist.name}{artist.spotlight && '★'}
+                        {index < artistBasicInfo.aNewRelease?.artists?.length - 1 && ', '}
+                      </NavLink>
+                    ))}
+                  </span>
                   </div>
                   <span className='font-normal text-xs text-main-700 '>{artistBasicInfo.aNewRelease?.releaseDate}</span>
                 </div>
               </div>
             </div>
             <div className='w-2/3'>
-            <TitleSection title={topSongs?.title} />
-            <div className='grid grid-cols-2 gap-3'>
-              {topSongs?.items?.slice(0, 6).map((item, index) => (
-                <SongItem item={item} key={index} hiddenAlbum={true} />
-              ))}
+              <TitleSection title={topSongs?.title} />
+              <div className='grid grid-cols-2 gap-3'>
+                {topSongs?.items?.slice(0, 6).map((item, index) => (
+                  <SongItem item={item} key={index} hiddenAlbum={true} />
+                ))}
+              </div>
             </div>
-          </div>
           </>
         ) :
           <div className='w-full'>
@@ -163,9 +174,30 @@ function Artist() {
                   </button>
                 </div>
               </div>
-              <div className='mt-2'>
-                <span className='text-sm font-bold text-main-600'>{item.title}</span>
-                <span className='text-xs font-normal text-main-700'>{item.artistsNames}</span>
+              <div className='mt-2 flex gap-2'>
+                <span className='h-10 w-10 overflow-hidden rounded-full'>
+                  <img
+                    src={artistBasicInfo?.thumbnail}
+                    alt={item.title}
+                    title={item.title}
+                    className="w-full h-auto transform transition-transform duration-500 group-hover:scale-110"
+                  />
+                </span>
+                <div className='flex flex-col'>
+                  <span className='text-sm font-bold text-main-600'>{item.title}</span>
+                  <span className='text-xs font-normal text-main-700'>
+                    {item.artists?.map((artist, index) => (
+                      <NavLink
+                        key={artist.id}
+                        to={`/${artist.alias}`}
+                        className="cursor-pointer hover:text-main-500 hover:underline"
+                      >
+                        {artist.name}{artist.spotlight && '★'}
+                        {index < item.artists?.length - 1 && ', '}
+                      </NavLink>
+                    ))}
+                  </span>
+                </div>
               </div>
             </div>
           ))}

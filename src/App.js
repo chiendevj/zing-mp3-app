@@ -19,6 +19,7 @@ function App() {
     dispatch(actions.getHomeChart())
     dispatch(actions.getHubHome())
     dispatch(actions.getNewReleaseChart())
+    dispatch(actions.getTop100())
     
   }, [])
 

@@ -9,7 +9,7 @@ const path = {
     HUB: 'hub',
     RELEASE_NEW: 'moi-phat-hanh',
     TOP_100: 'top100',
-    WEEKCHART__TITLE__CID: 'zing-chart-tuan/:title/:cid',
+    WEEKCHART__TITLE__CID: 'zing-chart-tuan/:title/:wid',
     ARTIST: ':name'
 
 

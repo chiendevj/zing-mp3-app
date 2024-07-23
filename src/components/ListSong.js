@@ -11,9 +11,9 @@ function ListSong() {
     <div className='flex flex-col w-full mt-1'>
       {/* Header */}
       <div className='flex w-full text-xs text-main-700 font-semibold items-center gap-1 p-[10px] border-b-[1px] border-[#c4cece]'>
-        <div className='w-full flex-auto text-start'>BÀI HÁT</div>
-        <div className='w-1/3 text-start'>ALBUM</div>
-        <div className='flex-auto text-end'>THỜI GIAN</div>
+        <div className='w-full flex-auto text-start text-nowrap'>BÀI HÁT</div>
+        <div className='w-1/3 text-start text-nowrap'>ALBUM</div>
+        <div className='flex-auto text-end text-nowrap'>THỜI GIAN</div>
       </div>
       {/* Body */}
       <div className='w-full overscroll-y-auto'>

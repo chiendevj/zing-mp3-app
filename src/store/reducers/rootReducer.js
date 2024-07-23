@@ -7,6 +7,7 @@ import musicReducer from "./musicReducer";
 import artistReducer from "./artistReducer";
 import chartReducer from './chartReducer'
 import hubhomeReducer from "./hubhomeReducer";
+import top100Reducer from "./top100Reducer";
 
 const commonConfig = {
     storage: storage,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
     music: persistReducer(musicConfig, musicReducer),
     artist: artistReducer,
     chart: chartReducer,
-    hubhome: hubhomeReducer
+    hubhome: hubhomeReducer,
+    top100: top100Reducer
 })
 
 export default rootReducer

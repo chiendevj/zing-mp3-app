@@ -1,18 +1,18 @@
 import React, { memo } from 'react';
 import icons from '../untils/icons';
 import { NavLink, useNavigate } from 'react-router-dom';
-import {truncateDescription} from '../untils/app'
+import { truncateDescription } from '../untils/app';
+
 function PlaylistItem({ item }) {
     const navigate = useNavigate();
 
-    
     const handleClickPlaylistItem = (item) => {
         const albumPath = item?.link.split('.')[0];
         navigate(albumPath);
     };
 
     return (
-        <div className='flex flex-col 1300:w-1/5 w-1/4 px-3'>
+        <div className='flex flex-col 1300:w-1/5 w-1/4 px-3 mb-6'>
             <div className='relative rounded-lg overflow-hidden group'>
                 <img
                     src={item.thumbnailM}
@@ -37,16 +37,16 @@ function PlaylistItem({ item }) {
                     {item.sortDescription
                         ? truncateDescription(item.sortDescription, 50)
                         : item?.artists &&
-                            item.artists.map((artist, index) => (
-                                <NavLink
-                                    key={artist.id}
-                                    to={`/${artist.alias}`}
-                                    className="cursor-pointer hover:text-main-500 hover:underline"
-                                >
-                                    {artist.name}
-                                    {index !== item.artists.length - 1 && ', '}
-                                </NavLink>
-                            ))}
+                        item.artists.map((artist, index) => (
+                            <NavLink
+                                key={artist.id}
+                                to={`/${artist.alias}`}
+                                className="cursor-pointer hover:text-main-500 hover:underline"
+                            >
+                                {artist.name}
+                                {index !== item.artists.length - 1 && ', '}
+                            </NavLink>
+                        ))}
                 </span>
             </span>
         </div>
