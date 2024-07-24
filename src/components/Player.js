@@ -5,6 +5,7 @@ import * as actions from '../store/actions'
 import icons from '../untils/icons'
 import { toast } from 'react-toastify'
 import Slider from 'rc-slider'
+import { NavLink } from 'react-router-dom'
 
 function Player({ toggleSidebarRight, isSidebarRightVisible }) {
     const audioEl = useRef(new Audio())
@@ -173,7 +174,14 @@ function Player({ toggleSidebarRight, isSidebarRightVisible }) {
                     <span className='text-sm text-[#32323d] font-medium'>{songInfo?.title}</span>
                     <div className='text-xs text-main-700 font-normal'>
                         {songInfo?.artists && songInfo.artists.map((artist, index) => (
-                            <span key={index}>{artist.name}{index !== songInfo.artists.length - 1 && ', '}</span>
+                            <NavLink
+                            key={artist.id}
+                            to={`/${artist.alias}`}
+                            className="cursor-pointer hover:text-main-500 hover:underline"
+                        >
+                            {artist.name}{artist.spotlight && '★'}
+                            {index < songInfo?.artists.length - 1 && ', '}
+                        </NavLink>
                         ))}
                     </div>
                 </div>

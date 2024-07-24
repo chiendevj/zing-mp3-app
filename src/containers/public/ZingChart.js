@@ -62,7 +62,7 @@ const ZingChart = () => {
         <h1 className='text-4xl font-bold text-main-500 my-3'>
           Bảng Xếp Hạng Tuần
         </h1>
-        <div className='w-full flex flex-col 1300:flex-row -mx-[15px]'>
+        <div className='w-full flex flex-col 1300:flex-row'>
           {weekCharts && weekCharts.map(item => (
             <WeekChartItem item={item} />
           ))}
