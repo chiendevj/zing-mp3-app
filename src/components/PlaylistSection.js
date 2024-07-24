@@ -4,14 +4,12 @@ import TitleSection from './TitleSection';
 
 const PlaylistSection = ({ item, top100 }) => {
     const [itemsToShow, setItemsToShow] = useState(5);
+    const [playlistsHub, setPlaylistsHub] = useState(item?.items || item?.playlists);
 
+    document.title = 'Chủ Đề Nhạc Hot | Tuyển tập nhạc hay chọn lọc'
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 1300) {
-                setItemsToShow(4);
-            } else {
-                setItemsToShow(5);
-            }
+            setItemsToShow(window.innerWidth < 1300 ? 4 : 5);
         };
 
         if (!top100) {
@@ -23,6 +21,7 @@ const PlaylistSection = ({ item, top100 }) => {
         } else {
             setItemsToShow(item?.items?.length || 0);
         }
+
     }, [top100, item]);
 
     return (
@@ -31,8 +30,8 @@ const PlaylistSection = ({ item, top100 }) => {
                 <TitleSection title={item?.title} top100={top100} />
             )}
             <div className='w-full my-5 flex flex-wrap'>
-                {item?.items?.slice(0, itemsToShow).map((item) => (
-                    <PlaylistItem item={item} key={item.encodeId} />
+                {playlistsHub?.slice(0, itemsToShow).map((playlistItem) => (
+                    <PlaylistItem item={playlistItem} key={playlistItem?.encodeId} />
                 ))}
             </div>
         </div>

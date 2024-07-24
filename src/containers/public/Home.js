@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const {
-    hEditorThemes, releaseList, rankingReleaseList,
+    banner, hEditorThemes, releaseList, rankingReleaseList,
     zingchartBanners, top100, albumHot, chart, rank
   } = useSelector(state => state.app);
 
@@ -22,7 +22,7 @@ function Home() {
   return (
     <div className='overflow-y-auto'>
       {/* Slider */}
-      <Slider />
+      <Slider banner = {banner} />
 
       {/* Danh sách mới phát hành */}
       <ReleaseSection releaseList={releaseList} />

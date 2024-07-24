@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actions from '../store/actions'
 import { useNavigate } from 'react-router-dom';
 
-function Slider() {
-    const { banner } = useSelector(state => state.app);
+function Slider({ banner }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -18,16 +17,18 @@ function Slider() {
         const interval = setInterval(() => {
             setCycleIndex(prevIndex => (prevIndex + 1) % itemsToShow);
         }, intervalTime);
-
+        
         return () => clearInterval(interval);  
     }, [itemsToShow]);
-
+    
     const getVisibleItems = () => {
+            if (banner) {
         let visibleItems = [];
         for (let i = 0; i < itemsToShow; i++) {
             visibleItems.push(banner[(cycleIndex + i) % banner?.length]);
         }
         return visibleItems;
+    }
     };
 
     const handleClickBanner = (item) => {
