@@ -1,23 +1,47 @@
-import React from 'react'
-import Scrollbars from 'react-custom-scrollbars-2'
-import icons from '../untils/icons'
+import React, { useState } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
+import icons from '../untils/icons';
+
+const renderThumb = ({ style, ...props }) => {
+  const thumbStyle = {
+    backgroundColor: '#0e8080',
+    borderRadius: '4px'
+  };
+  return <div style={{ ...style, ...thumbStyle }} {...props} />;
+};
+
 function SidebarRight() {
-  const renderThumb = ({ style, ...props }) => {
-    const thumbStyle = {
-      backgroundColor: '#0e8080', // Màu của thanh cuộn
-      borderRadius: '4px'
-    };
-    return <div style={{ ...style, ...thumbStyle }} {...props} />;
+  const [activeTab, setActiveTab] = useState('playlist');
+
+  const handleShowPlaylist = () => {
+    setActiveTab('playlist');
+  };
+
+  const handleShowRecent = () => {
+    setActiveTab('recent');
   };
 
   return (
     <div className='h-full'>
       <div className='flex w-full h-full flex-col'>
-        <div className='h-[70px] px-2 py-[14px] w-full flex-none text-sm flex items-center justify-between gap-1 text-main-700'>
-          <div className='p-2 bg-main-200 rounded-full'><span className='rounded-full text-main-500 bg-main-100 p-1'>Danh sách phát</span></div>
-          <div className='gap-2 flex mx-4'>
-          <span className='p-2 rounded-full bg-main-200 hover:opacity-70'>{<icons.CiAlarmOn size={18} />}</span>
-          <span className='p-2 rounded-full bg-main-200 hover:opacity-70'>{<icons.RxDotsHorizontal size={18} />}</span>
+        <div className='h-[70px] px-2 py-[14px] w-full flex-none text-sm flex items-center justify-between text-main-700'>
+          <div className='p-2 bg-main-200 rounded-full flex flex-nowrap gap-1'>
+            <span
+              className={`rounded-full p-1 text-xs cursor-pointer ${activeTab === 'playlist' ? 'bg-main-100 text-main-500' : 'text-main-600'}`}
+              onClick={handleShowPlaylist}
+            >
+              Danh sách phát
+            </span>
+            <span
+              className={`rounded-full p-1 text-xs cursor-pointer ${activeTab === 'recent' ? 'bg-main-100 text-main-500' : 'text-main-600'}`}
+              onClick={handleShowRecent}
+            >
+              Nghe gần đây
+            </span>
+          </div>
+          <div className='gap-1 flex mx-4'>
+            <span className='p-2 rounded-full bg-main-200 hover:opacity-70'>{<icons.CiAlarmOn size={18} />}</span>
+            <span className='p-2 rounded-full bg-main-200 hover:opacity-70'>{<icons.RxDotsHorizontal size={18} />}</span>
           </div>
         </div>
         <div className='w-full flex-auto h-full pb-[89px]'>
@@ -28,30 +52,24 @@ function SidebarRight() {
             renderThumbVertical={renderThumb}
           >
             <div className='p-2'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis fugit, expedita voluptatem cupiditate quia ipsum maiores magni. Enim nisi rerum, deserunt laudantium iste vitae perspiciatis labore, tempore praesentium quos aut.
+              {activeTab === 'playlist' && (
+                <div>
+                  {/* Nội dung Danh sách phát */}
+                  Danh sách phát
+                </div>
+              )}
+              {activeTab === 'recent' && (
+                <div>
+                  {/* Nội dung Nghe gần đây */}
+                  Nghe gần đây
+                </div>
+              )}
             </div>
           </Scrollbars>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SidebarRight
+export default SidebarRight;

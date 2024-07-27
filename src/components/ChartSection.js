@@ -17,8 +17,8 @@ const ChartSection = ({ chart, rank }) => {
                 className="object-cover rounded-md"
                 style={{ aspectRatio: '3/1' }}
             />
-            <div className="absolute z-10 opacity-70 top-0 right-14 left-14 bottom-0 px-14 rounded-md bg-gradient-to-t from-[#381452] to-[#ba53f5]"></div>
-            <div className="h-[90%] absolute z-20 top-0 right-14 left-14 bottom-0 p-4">
+            <div className="absolute z-1 opacity-70 top-0 right-14 left-14 bottom-0 px-14 rounded-md bg-gradient-to-t from-[#381452] to-[#ba53f5]"></div>
+            <div className="h-[90%] absolute z-2 top-0 right-14 left-14 bottom-0 p-4">
                 <h3 
                     onClick={() => navigate(path.ZING_CHART)}
                     className="cursor-pointer w-fit text-2xl font-bold bg-gradient-text bg-clip-text text-transparent">
