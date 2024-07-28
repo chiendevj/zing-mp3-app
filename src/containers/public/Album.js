@@ -8,12 +8,13 @@ import numeral from 'numeral';
 import { ListSong, SingerItem } from '../../components';
 import { useDispatch } from 'react-redux';
 import actionTypes from '../../store/actions/actionTypes';
+import * as actions from '../../store/actions'
 
 const Album = () => {
-  const { pid } = useParams();
   const [playlistData, setPlaylistData] = useState(null);
   const dispatch = useDispatch();
-
+  const { pid } = useParams();
+  
   useEffect(() => {
     const fetchDetailAlbum = async () => {
       const response = await apis.apiGetDetailPlaylist(pid);

@@ -63,7 +63,7 @@ const Hub = () => {
               <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer'>
                 <img src={item.thumbnail} alt={item.title} className='transform transition-transform duration-500 group-hover:scale-110' />
                 <div className="absolute inset-0 text-2xl font-bold  bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
-                  <span className="absolute z-10 text-white p-1 transition-opacity duration-300">
+                  <span className="absolute z-1 text-white p-1 transition-opacity duration-300">
                     {item.title}
                   </span>
                 </div>
@@ -84,7 +84,7 @@ const Hub = () => {
               <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer'>
                 <img src={item.thumbnail} alt={item.title} className='transform transition-transform duration-500 group-hover:scale-110' />
                 <div className="absolute inset-0 text-2xl font-bold bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
-                  <span className="absolute z-10 text-white p-1 transition-opacity duration-300">
+                  <span className="absolute z-1 text-white p-1 transition-opacity duration-300">
                     {item.title}
                   </span>
                 </div>
