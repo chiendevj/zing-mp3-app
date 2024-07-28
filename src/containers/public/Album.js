@@ -5,16 +5,18 @@ import icons from '../../untils/icons';
 import moment from 'moment';
 import 'moment-duration-format';
 import numeral from 'numeral';
-import { ListSong, SingerItem } from '../../components';
+import { ListSong, PlaylistItem, SingerItem } from '../../components';
 import { useDispatch } from 'react-redux';
 import actionTypes from '../../store/actions/actionTypes';
-import * as actions from '../../store/actions'
 
 const Album = () => {
   const [playlistData, setPlaylistData] = useState(null);
+  const [releasePlaylistData, setReleasePlaylistData] = useState(null);
+  const [itemsToShow, setItemsToShow] = useState(5);
+
   const dispatch = useDispatch();
   const { pid } = useParams();
-  
+
   useEffect(() => {
     const fetchDetailAlbum = async () => {
       const response = await apis.apiGetDetailPlaylist(pid);
@@ -27,7 +29,15 @@ const Album = () => {
       }
     };
 
+    const fetchReleaseAlbum = async () => {
+      const response = await apis.apiGetReleasePlaylist(pid);
+      if (response.data.err === 0) {
+        setReleasePlaylistData(response.data.data);
+      }
+    };
+
     fetchDetailAlbum();
+    fetchReleaseAlbum();
   }, [pid, dispatch]);
 
   useEffect(() => {
@@ -36,6 +46,16 @@ const Album = () => {
     }
   }, [playlistData]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsToShow(window.innerWidth < 1300 ? 4 : 5);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="w-full mt-5 px-14">
@@ -45,14 +65,21 @@ const Album = () => {
           <div className="flex 1300:flex-col items-center gap-5">
             {/* Album thumbnail */}
             <div className="relative rounded-lg overflow-hidden group">
-              <img
-                src={playlistData?.thumbnailM}
-                alt={playlistData?.title}
-                title={playlistData?.title}
-                className="w-full h-auto transform transition-transform duration-500 group-hover:scale-110"
-              />
+              {playlistData?.thumbnailM ? (
+                <img
+                  src={playlistData.thumbnailM}
+                  alt={playlistData.title}
+                  title={playlistData.title}
+                  className="w-full h-auto transform transition-transform duration-500 group-hover:scale-110"
+                />
+              ) : (
+                <div className="w-full h-auto bg-gray-200" />
+              )}
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
-                <button className="absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300">
+                <button
+                  className="absolute z-10 text-white opacity-0 group-hover:opacity-100 p-1 rounded-full border border-white transition-opacity duration-300"
+                  aria-label="Play Album"
+                >
                   <icons.MdPlayArrow size={35} />
                 </button>
               </div>
@@ -83,7 +110,8 @@ const Album = () => {
                     ))}
                 </div>
                 <span className="text-xs text-main-700">
-                  {numeral(playlistData?.like).format('0a').toUpperCase() +' người yêu thích'}
+                  {numeral(playlistData?.like).format('0a').toUpperCase() +
+                    ' người yêu thích'}
                 </span>
               </div>
               {/* Play all button and options */}
@@ -115,18 +143,35 @@ const Album = () => {
           <ListSong />
         </div>
       </div>
-      {/* Artists section with carousel */}
-      {playlistData?.artists?.length > 0 && (
+      {/* Artists section  */}
+      {releasePlaylistData && releasePlaylistData[0]?.items?.length > 0 && (
         <div className="w-full my-5 flex flex-col">
           <h3 className="text-xl text-main-600 font-bold mb-5">
-            Nghệ Sĩ Tham Gia
+            {releasePlaylistData[0].title}
           </h3>
           <div className="relative overflow-hidden font-bold">
             <div className="flex overflow-hidden">
-              {playlistData?.artists
-                ?.slice(0, 4)
+              {releasePlaylistData[0].items
+                .slice(0, itemsToShow)
                 .map((artist) => (
                   <SingerItem artist={artist} key={artist.id} />
+                ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Playlist Release */}
+
+      {releasePlaylistData && releasePlaylistData[1]?.items?.length > 0 && (
+        <div className="w-full my-5 flex flex-col">
+          <h3 className="text-xl text-main-600 font-bold mb-5">
+            {releasePlaylistData[1].title}
+          </h3>
+          <div className="relative overflow-hidden font-bold">
+            <div className="flex overflow-hidden">
+            {releasePlaylistData[1]?.items?.slice(0, itemsToShow).map((playlistItem) => (
+                    <PlaylistItem item={playlistItem} key={playlistItem?.encodeId} />
                 ))}
             </div>
           </div>

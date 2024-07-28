@@ -27,7 +27,6 @@ const BroadcastList = () => {
 
     }, [curSongId, curAlbumId])
 
-    console.log(albumCurData);
     return (
         <div>
             {/* Song Current */}
