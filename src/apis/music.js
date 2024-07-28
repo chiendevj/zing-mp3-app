@@ -42,6 +42,20 @@ export const apiGetDetailPlaylist = (pid) => new Promise( async (resolve, reject
     }
 })
 
+export const apiGetReleasePlaylist = (pid) => new Promise( async (resolve, reject) => {
+    try {
+        const response = await axios({
+            url: '/suggested_playlists',
+            method: 'GET',
+            params: {id: pid}
+        })
+
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
 export const apiGetVideo = (sid) => new Promise( async (resolve, reject) => {
     try {
         const response = await axios({

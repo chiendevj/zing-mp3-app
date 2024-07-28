@@ -7,8 +7,8 @@ function SingerItem({ artist }) {
 
     return (
         <>
-            <div className='w-1/4 h-full px-[14px] flex flex-col items-center' key={artist.encodeId}>
-                <img src={artist.thumbnailM} alt="" className='rounded-full' />
+            <div className='1300:w-1/5 w-1/4 h-full px-[14px] flex flex-col items-center' key={artist.encodeId}>
+                <img src={artist.thumbnail} alt="" className='rounded-full' />
                 <NavLink
                     key={artist.id}
                     to={`/${artist.alias}`}
