@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
 import icons from '../untils/icons';
+import {BroadcastList, RecentList } from './';
 
 const renderThumb = ({ style, ...props }) => {
   const thumbStyle = {
@@ -27,13 +28,13 @@ function SidebarRight() {
         <div className='h-[70px] px-2 py-[14px] w-full flex-none text-sm flex items-center justify-between text-main-700'>
           <div className='p-2 bg-main-200 rounded-full flex flex-nowrap gap-1'>
             <span
-              className={`rounded-full p-1 text-xs cursor-pointer ${activeTab === 'playlist' ? 'bg-main-100 text-main-500' : 'text-main-600'}`}
+              className={`rounded-full p-1 text-xs cursor-pointer ${activeTab === 'playlist' ? 'bg-main-100 text-main-500' : 'text-main-600 hover:text-main-500'}`}
               onClick={handleShowPlaylist}
             >
               Danh sách phát
             </span>
             <span
-              className={`rounded-full p-1 text-xs cursor-pointer ${activeTab === 'recent' ? 'bg-main-100 text-main-500' : 'text-main-600'}`}
+              className={`rounded-full p-1 text-xs cursor-pointer ${activeTab === 'recent' ? 'bg-main-100 text-main-500' : 'text-main-600 hover:text-main-500'}`}
               onClick={handleShowRecent}
             >
               Nghe gần đây
@@ -53,16 +54,10 @@ function SidebarRight() {
           >
             <div className='p-2'>
               {activeTab === 'playlist' && (
-                <div>
-                  {/* Nội dung Danh sách phát */}
-                  Danh sách phát
-                </div>
+                <BroadcastList />
               )}
               {activeTab === 'recent' && (
-                <div>
-                  {/* Nội dung Nghe gần đây */}
-                  Nghe gần đây
-                </div>
+                <RecentList />
               )}
             </div>
           </Scrollbars>

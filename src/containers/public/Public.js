@@ -69,7 +69,7 @@ function Public() {
                     </div>
                 </div>
             </div>
-            <div className='fixed bottom-0 left-0 right-0 h-[90px] w-full z-10'>
+            <div className='fixed bottom-0 left-0 right-0 h-[90px] w-full '>
                 <Player toggleSidebarRight={toggleSidebarRight} isSidebarRightVisible={isSidebarRightVisible} />
             </div>
         </div>

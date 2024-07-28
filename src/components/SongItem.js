@@ -3,19 +3,23 @@ import icons from '../untils/icons'
 import moment from 'moment';
 import * as actions from '../store/actions'
 import { useDispatch } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 
 function SongItem({ item, display, index, hiddenAlbum }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const { pid } = useParams();
 
     const handleClickAlbum = (item) => {
         const albumPath = item?.link.split('.')[0]
         navigate(albumPath)
     }
 
-    const handleCLickSong = (sid) => {
-        dispatch(actions.setCurSongId(sid))
+    
+  
+  const handleCLickSong = (sid) => {
+      dispatch(actions.setCurSongId(sid))
+      dispatch(actions.setCurAlbumId(pid));
         // dispatch(actions.playAlbum(true))
         dispatch(actions.play(true))
     }
@@ -61,27 +65,27 @@ function SongItem({ item, display, index, hiddenAlbum }) {
                         <div className='text-xs text-main-700 font-normal'>
                             {item?.artists && hiddenAlbum ? (
                                 <>
-                                    {item.artists.slice(0, 1).map((artist, index) => (
+                                    {item?.artists?.slice(0, 2).map((artist, index) => (
                                         <NavLink
-                                            key={artist.id}
-                                            to={`/${artist.alias}`}
+                                            key={artist?.id}
+                                            to={`/${artist?.alias}`}
                                             className="cursor-pointer hover:text-main-500 hover:underline"
                                         >
-                                            {artist.name}{artist.spotlight && '★'}
+                                            {artist?.name}{artist?.spotlight && '★'}
                                         </NavLink>
                                     ))}
-                                    {item.artists.length > 1 && '...'}
+                                    {item?.artists?.length > 2 && '...'}
                                 </>
                             )
                         :
-                        (item.artists.map((artist, index) => (
+                        (item?.artists?.map((artist, index) => (
                             <NavLink
-                                key={artist.id}
-                                to={`/${artist.alias}`}
+                                key={artist?.id}
+                                to={`/${artist?.alias}`}
                                 className="cursor-pointer hover:text-main-500 hover:underline"
                             >
-                                {artist.name}{artist.spotlight && '★'}
-                                {index < item.artists.length - 1 && ', '}
+                                {artist?.name}{artist?.spotlight && '★'}
+                                {index < item?.artists?.length - 1 && ', '}
                             </NavLink>
                         )))
                         }

@@ -72,17 +72,33 @@ function SongReleaseItem({ item, order, percent, indexBgColor }) {
                         {item?.title?.length >= 30 ? `${item?.title.trim().slice(0, 30)}...` : item?.title}
                     </span>
                     <div className={`text-xs ${order ? 'text-[#ffffff80]' : 'text-main-700'} ${textColorClass} font-normal`}>
-                        {item?.artists &&
-                            item.artists.map((artist, index) => (
-                                <NavLink
-                                    key={artist.id}
-                                    to={`/${artist.alias}`}
-                                    className="cursor-pointer hover:text-main-500 hover:underline"
-                                >
-                                    {artist.name}{artist.spotlight && '★'}
-                                    {index !== item.artists.length - 1 && ', '}
-                                </NavLink>
-                            ))}
+                    {item?.artists.length > 0 ? (
+                                <>
+                                    {item?.artists?.slice(0, 2).map((artist, index) => (
+                                        <NavLink
+                                            key={artist.id}
+                                            to={`/${artist.alias}`}
+                                            className="cursor-pointer hover:text-main-500 hover:underline"
+                                        >
+                                            {artist.name}{artist.spotlight && '★'}
+                                            {index < item.artists.length - 1 && ', '}
+                                        </NavLink>
+                                    ))}
+                                    {item.artists.length > 1 && '...'}
+                                </>
+                            )
+                        :
+                        (item?.artists?.map((artist, index) => (
+                            <NavLink
+                                key={artist.id}
+                                to={`/${artist.alias}`}
+                                className="cursor-pointer hover:text-main-500 hover:underline"
+                            >
+                                {artist?.name}{artist?.spotlight && '★'}
+                                {index < item?.artists?.length - 1 && ', '}
+                            </NavLink>
+                        )))
+                        }
                     </div>
                     {!percent
                         ?

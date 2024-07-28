@@ -22,6 +22,9 @@ export {default as ChartBanner} from './ChartBanner'
 export {default as WeekChartItem} from './WeekChartItem'  
 export {default as ModalVideo} from './ModalVideo'  
 export {default as VideoSection} from './VideoSection'  
+export {default as BroadcastList} from './BroadcastList'  
+export {default as RecentList} from './RecentList'  
+export {default as SongSidebarRight} from './SongSidebarRight'  
 
 
 

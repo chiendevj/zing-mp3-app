@@ -17,7 +17,7 @@ function ListSong() {
       </div>
       {/* Body */}
       <div className='w-full overscroll-y-auto'>
-        {songs?.items?.map((item, index) => (
+        {songs && songs?.items?.map((item, index) => (
           <SongItem item={item} key={index} />
         ))}
       </div>
