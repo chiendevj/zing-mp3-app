@@ -11,6 +11,7 @@ export {default as WeekChart} from './WeekChart'
 export {default as Artist} from './Artist'
 export {default as Splash} from './Splash'
 export {default as HubDetail} from './HubDetail'
+export {default as Search} from './Search'
 
 
 
