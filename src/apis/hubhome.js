@@ -12,14 +12,13 @@ export const apiGetHubHome = () => new Promise( async (resolve, reject) => {
     }
 })
 
-export const apiGetHubDetail = (hid) => new Promise( async (resolve, reject) => {
+export const apiGetHubDetail = (id) => new Promise( async (resolve, reject) => {
     try {
         const response = await axios({
             url: '/hub-detail',
             method: 'GET',
-            params: { id: hid }
+            params: { id: id }
         })
-        console.log(response);
         resolve(response)
     } catch (error) {
         reject(error)

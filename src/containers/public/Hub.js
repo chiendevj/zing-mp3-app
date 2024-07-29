@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
-import { PlaylistSection, TitleSection } from '../../components';
+import { PlaylistSection } from '../../components';
 
 const Hub = () => {
   const { banners, featured, nations, topTopic, hubPlaylists } = useSelector(state => state.hubhome)
@@ -36,8 +36,7 @@ const Hub = () => {
   
   }, [showAll, featured])
   
-  console.log(hubPlaylists);
-
+  console.log(banners);
   return (
     <div className='px-14'>
 
@@ -46,7 +45,7 @@ const Hub = () => {
         <Slider {...settings}>
           {banners.map((item) => (
             <div className='w-full h-full rounded-md overflow-hidden'>
-              <img src={item.cover} alt={item.link} className='w-full h-full cursor-pointer' onClick={() => { toast.error('Bảo trì >_<') }} />
+              <img src={item.cover} alt={item.link} className='w-full h-full cursor-pointer' onClick={() => { navigate(item.link.split('.')[0]) }} />
             </div>
           ))}
         </Slider>
@@ -60,7 +59,7 @@ const Hub = () => {
         <div className='w-full'>
           <div className='grid 1300:grid-cols-4 grid-cols-3'>
             {featured?.items && featured?.items.map(item => (
-              <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer'>
+              <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer' onClick={() => { navigate(item.link.split('.')[0]) }}>
                 <img src={item.thumbnail} alt={item.title} className='transform transition-transform duration-500 group-hover:scale-110' />
                 <div className="absolute inset-0 text-2xl font-bold  bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
                   <span className="absolute z-1 text-white p-1 transition-opacity duration-300">
@@ -81,7 +80,7 @@ const Hub = () => {
         <div className='w-full'>
           <div className='grid 1300:grid-cols-4 grid-cols-3'>
             {nations && nations?.map(item => (
-              <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer'>
+              <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer' onClick={() => { navigate(item.link.split('.')[0]) }}>
                 <img src={item.thumbnail} alt={item.title} className='transform transition-transform duration-500 group-hover:scale-110' />
                 <div className="absolute inset-0 text-2xl font-bold bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300">
                   <span className="absolute z-1 text-white p-1 transition-opacity duration-300">
@@ -102,7 +101,7 @@ const Hub = () => {
         <div className='w-full'>
           <div className='grid 1300:grid-cols-4 grid-cols-3'>
             {topTopic && topTopic?.slice(0, itemShow).map(item => (
-              <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer'>
+              <div className='relative m-3 rounded-lg overflow-hidden group cursor-pointer' onClick={() => { navigate(item.link.split('.')[0]) }}>
                 <img src={item.thumbnail} alt={item.title} className='transform transition-transform duration-500 group-hover:scale-110' />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex pl-[15px] pb-[15px] items-end transition-opacity duration-300">
                   <div className='flex flex-col space-y-1'>

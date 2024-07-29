@@ -7,7 +7,7 @@ function PlaylistItem({ item }) {
     const navigate = useNavigate();
 
     const handleClickPlaylistItem = (item) => {
-        const albumPath = item?.link.split('.')[0];
+        const albumPath = item?.link?.split('.')[0];
         navigate(albumPath);
     };
 
@@ -15,9 +15,9 @@ function PlaylistItem({ item }) {
         <div className='flex flex-col 1300:w-1/5 w-1/4 px-3 mb-6'>
             <div className='relative rounded-lg overflow-hidden group'>
                 <img
-                    src={item.thumbnailM}
-                    alt={item.title}
-                    title={item.title}
+                    src={item?.thumbnailM}
+                    alt={item?.title}
+                    title={item?.title}
                     className='w-full h-auto transform transition-transform duration-500 group-hover:scale-110'
                 />
                 <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 flex items-center justify-center transition-opacity duration-300'>
@@ -31,19 +31,19 @@ function PlaylistItem({ item }) {
             </div>
             <span className='flex flex-col mt-2 gap-1'>
                 <span className='text-sm text-main-600 font-bold'>
-                    {truncateDescription(item.title, 30)}
+                    {item?.title ? truncateDescription(item.title, 30) : ''}
                 </span>
                 <span className='text-sm text-main-700 font-medium'>
-                    {item.sortDescription
+                    {item?.sortDescription
                         ? truncateDescription(item.sortDescription, 50)
-                        : item?.artists &&
+                        : item?.artists?.length > 0 &&
                         item.artists.map((artist, index) => (
                             <NavLink
-                                key={artist.id}
-                                to={`/${artist.alias}`}
+                                key={artist?.id}
+                                to={`/${artist?.alias}`}
                                 className="cursor-pointer hover:text-main-500 hover:underline"
                             >
-                                {artist.name}
+                                {artist?.name}
                                 {index !== item.artists.length - 1 && ', '}
                             </NavLink>
                         ))}

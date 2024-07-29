@@ -16,8 +16,8 @@ function SongSidebarRight({item, isCurrent}) {
         <div
             className={`${isCurrent ? 'bg-main-500' : 'bg-transparent hover:bg-main-200' } p-2 rounded-md`}
         >
-            <div className='flex gap-2 items-center'>
-                <div className='relative rounded overflow-hidden w-10 h-10 group'>
+            <div className='flex gap-2 items-center group'>
+                <div className='relative rounded overflow-hidden w-10 h-10'>
                     <img
                         src={item?.thumbnailM}
                         alt={item?.title}
@@ -40,7 +40,7 @@ function SongSidebarRight({item, isCurrent}) {
                         {item?.title?.length >= 30 ? `${item?.title.trim().slice(0, 30)}...` : item?.title}
                     </span>
                     <div className={`text-xs ${isCurrent ? 'text-[#ffffff99]' : 'text-main-700'} font-normal`}>
-                    {item?.artists.length > 0 ? (
+                    {item?.artists?.length > 0 ? (
                                 <>
                                     {item?.artists?.slice(0, 2).map((artist, index) => (
                                         <NavLink
