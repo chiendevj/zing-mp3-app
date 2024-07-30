@@ -8,7 +8,6 @@ function HubDetail() {
   useEffect(() => {
     const fetchHubDetail = async () => {
       const response = await apis.apiGetHubDetail(hid)
-      console.log(response);
       if (response.data.err === 0) {
         setHubDetailData(response.data.data)
       }
@@ -16,6 +15,14 @@ function HubDetail() {
 
     fetchHubDetail()
   }, [hid])
+
+  useEffect(() => {
+    if (hubDetailData) {
+      document.title = `${hubDetailData?.title} | Tuyển tập nhạc hay chọn lọc `;
+    }
+  }, [hubDetailData]);
+
+  
 
   return (
     <>

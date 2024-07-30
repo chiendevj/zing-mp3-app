@@ -72,6 +72,7 @@ function SongItem({ item, display, index, hiddenAlbum }) {
                                             className="cursor-pointer hover:text-main-500 hover:underline"
                                         >
                                             {artist?.name}{artist?.spotlight && '★'}
+                                            {index < item?.artists?.length - 1 && ', '}
                                         </NavLink>
                                     ))}
                                     {item?.artists?.length > 2 && '...'}
