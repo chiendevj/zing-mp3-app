@@ -28,3 +28,4 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ## Khi chạy web app ở link của vercel, vui lòng run API ở [http://localhost:5000](http://localhost:5000) <3 ...
+## Phần API chưa đẩy lên hosting, còn phải chạy local :( 
