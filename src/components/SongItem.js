@@ -15,11 +15,11 @@ function SongItem({ item, display, index, hiddenAlbum }) {
         navigate(albumPath)
     }
 
-    
-  
-  const handleCLickSong = (sid) => {
-      dispatch(actions.setCurSongId(sid))
-      dispatch(actions.setCurAlbumId(pid));
+
+
+    const handleCLickSong = (sid) => {
+        dispatch(actions.setCurSongId(sid))
+        dispatch(actions.setCurAlbumId(pid));
         // dispatch(actions.playAlbum(true))
         dispatch(actions.play(true))
     }
@@ -78,18 +78,18 @@ function SongItem({ item, display, index, hiddenAlbum }) {
                                     {item?.artists?.length > 2 && '...'}
                                 </>
                             )
-                        :
-                        (item?.artists?.map((artist, index) => (
-                            <NavLink
-                                key={artist?.id}
-                                to={`/${artist?.alias}`}
-                                className="cursor-pointer hover:text-main-500 hover:underline"
-                            >
-                                {artist?.name}{artist?.spotlight && '★'}
-                                {index < item?.artists?.length - 1 && ', '}
-                            </NavLink>
-                        )))
-                        }
+                                :
+                                (item?.artists?.map((artist, index) => (
+                                    <NavLink
+                                        key={artist?.id}
+                                        to={`/${artist?.alias}`}
+                                        className="cursor-pointer hover:text-main-500 hover:underline"
+                                    >
+                                        {artist?.name}{artist?.spotlight && '★'}
+                                        {index < item?.artists?.length - 1 && ', '}
+                                    </NavLink>
+                                )))
+                            }
                         </div>
                     </div>
                 </div>

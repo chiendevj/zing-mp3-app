@@ -13,3 +13,17 @@ export const apiGetRecommendKeyword = () => new Promise( async (resolve, reject)
     }
 })
 
+export const apiGetSearchAll = (keyword) => new Promise( async (resolve, reject) => {
+    try {
+        const response = await axios({
+            url: '/search',
+            method: 'GET',
+            params: {keyword: keyword}
+        })
+
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
